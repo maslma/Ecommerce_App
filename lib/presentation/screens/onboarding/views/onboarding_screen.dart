@@ -1,7 +1,9 @@
+import 'package:ecommerce_app/presentation/presentation_managers/color_managers.dart';
 import 'package:ecommerce_app/presentation/screens/onboarding/views/widget/custom_button.dart';
 import 'package:ecommerce_app/presentation/screens/onboarding/views/widget/custom_slider.dart';
 import 'package:ecommerce_app/presentation/screens/onboarding/views/widget/dot_controller.dart';
 import 'package:flutter/material.dart';
+
 
 class OnBoardingView extends StatelessWidget {
   const OnBoardingView({super.key});
@@ -9,26 +11,27 @@ class OnBoardingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+        backgroundColor: ColorManager.backGroundColor,
         body: SafeArea(
-      child: Column(
-        children: [
-          Expanded(
-            flex: 3,
-            child: CustomSliderOnBoarding(),
+          child: Column(
+            children: [
+              Expanded(
+                flex: 3,
+                child: CustomSliderOnBoarding(),
+              ),
+              Expanded(
+                  flex: 1,
+                  child: Column(
+                    children: [
+                      CustomDotControllerOnBoarding(),
+                      Spacer(
+                        flex: 2,
+                      ),
+                      CustomButtonOnBoarding()
+                    ],
+                  ))
+            ],
           ),
-          Expanded(
-              flex: 1,
-              child: Column(
-                children: [
-                  CustomDotControllerOnBoarding(),
-                  Spacer(
-                    flex: 2,
-                  ),
-                  CustomButtonOnBoarding()
-                ],
-              ))
-        ],
-      ),
-    ));
+        ));
   }
 }

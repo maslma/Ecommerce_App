@@ -1,5 +1,8 @@
-import 'package:ecommerce_app/presentation/screens/onboarding/views/onboarding_screen.dart';
+import 'package:ecommerce_app/presentation/presentation_managers/routes_managers.dart';
+import 'package:ecommerce_app/presentation/presentation_managers/theme_manager.dart';
+import 'package:ecommerce_app/presentation/screens/onboarding/view_model/onboarding_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
@@ -18,14 +21,17 @@ class MyApp extends StatelessWidget {
         splitScreenMode: true,
         useInheritedMediaQuery: true,
         builder: (BuildContext context, Widget? child) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Ecommerce App',
-            theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-              useMaterial3: true,
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (context) => OnBoardingCubit()),
+            ],
+            child: MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Ecommerce App',
+              theme:getThemeData(),
+              onGenerateRoute: RoutesGenerator.getRoutes,
+              initialRoute: Routes.onboardingRoute,
             ),
-            home: const OnBoardingView(),
           );
         });
   }
