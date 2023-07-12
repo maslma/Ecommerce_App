@@ -1,5 +1,5 @@
+import 'package:ecommerce_app/data/localization/app_lang.dart';
 import 'package:ecommerce_app/domain/data_source/static/onboarding_static.dart';
-import 'package:ecommerce_app/presentation/presentation_managers/color_managers.dart';
 import 'package:ecommerce_app/presentation/screens/onboarding/view_model/onboarding_cubit.dart';
 import 'package:ecommerce_app/presentation/screens/onboarding/view_model/onboarding_state.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +31,7 @@ class CustomSliderOnBoarding extends StatelessWidget {
                   height: 40.h,
                 ),
                 Text(
-                  onBoardingList[index].title!,
+                  onBoardingList[index].title!.tr(context),
                   style:Theme.of(context).textTheme.displayLarge,
                 ), SizedBox(
                   height: 20.h,
@@ -40,7 +40,7 @@ class CustomSliderOnBoarding extends StatelessWidget {
                   width: double.infinity,
                   alignment: Alignment.center,
                   child: Text(
-                    onBoardingList[index].body!,
+                    onBoardingList[index].body!.tr(context),
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyLarge
                   ),

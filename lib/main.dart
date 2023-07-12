@@ -1,11 +1,19 @@
+import 'package:ecommerce_app/data/local/chach_helper.dart';
+import 'package:ecommerce_app/data/localization/app_lang.dart';
 import 'package:ecommerce_app/presentation/presentation_managers/routes_managers.dart';
 import 'package:ecommerce_app/presentation/presentation_managers/theme_manager.dart';
+import 'package:ecommerce_app/presentation/screens/language/view_model/language_cubit.dart';
 import 'package:ecommerce_app/presentation/screens/onboarding/view_model/onboarding_cubit.dart';
+import 'package:ecommerce_app/utities/bloc_observer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await ChachHelper.init();
+  Bloc.observer = MyBlocObserver();
   runApp(const MyApp());
 }
 
@@ -23,14 +31,40 @@ class MyApp extends StatelessWidget {
         builder: (BuildContext context, Widget? child) {
           return MultiBlocProvider(
             providers: [
+              BlocProvider(create: (context) => LanguageCubit()..getSavedLanguage()),
               BlocProvider(create: (context) => OnBoardingCubit()),
             ],
-            child: MaterialApp(
-              debugShowCheckedModeBanner: false,
-              title: 'Ecommerce App',
-              theme:getThemeData(),
-              onGenerateRoute: RoutesGenerator.getRoutes,
-              initialRoute: Routes.onboardingRoute,
+            child: BlocBuilder<LanguageCubit,LanguageState>(
+              builder: (context, state) {
+                return MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  title: 'Ecommerce App',
+                  theme: getThemeData(),
+                  onGenerateRoute: RoutesGenerator.getRoutes,
+                  initialRoute: Routes.languageRoute,
+                  locale: state is ChangeLocaleState ? state.locale : null,
+                  localizationsDelegates: const [
+                    AppLocalizations.delegate,
+                    GlobalMaterialLocalizations.delegate,
+                    GlobalWidgetsLocalizations.delegate,
+                    GlobalCupertinoLocalizations.delegate
+                  ],
+                  supportedLocales: const [
+                    Locale('en', ''),
+                    Locale('ar', ''),
+                  ],
+                  localeResolutionCallback: (currentLang, supportLang) {
+                    if (currentLang != null) {
+                      for (Locale locale in supportLang) {
+                        if (locale.languageCode == currentLang.languageCode) {
+                          return currentLang;
+                        }
+                      }
+                    }
+                    return supportLang.first;
+                  },
+                );
+              }
             ),
           );
         });

@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/presentation/screens/auth/views/login_screen.dart';
+import 'package:ecommerce_app/presentation/screens/language/views/language_screen.dart';
 import 'package:ecommerce_app/presentation/screens/onboarding/views/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -6,6 +7,7 @@ import 'package:flutter/material.dart';
 class Routes {
   static const String splashRoute = '/';
   static const String onboardingRoute = '/onboardingRoute';
+  static const String languageRoute = '/languageRoute';
   static const String loginRoute = '/login';
   static const String registerRoute = '/register';
   static const String homeRoute = '/home';
@@ -23,6 +25,8 @@ class RoutesGenerator {
       //   return MaterialPageRoute(builder: (_) => const SplashView());
       case Routes.onboardingRoute:
         return MaterialPageRoute(builder: (_) => const OnBoardingView());
+      case Routes.languageRoute:
+        return MaterialPageRoute(builder: (_) => const LanguageView());
       case Routes.loginRoute:
         return MaterialPageRoute(builder: (_) => const LoginView());
       // case Routes.forgotPasswordRoute:
