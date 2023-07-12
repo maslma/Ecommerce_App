@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/presentation/screens/auth/views/login_screen.dart';
+import 'package:ecommerce_app/presentation/screens/auth/views/register_screen.dart';
 import 'package:ecommerce_app/presentation/screens/language/views/language_screen.dart';
 import 'package:ecommerce_app/presentation/screens/onboarding/views/onboarding_screen.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +28,7 @@ class RoutesGenerator {
       case Routes.languageRoute:
         return MaterialPageRoute(builder: (_) => const LanguageView());
       case Routes.loginRoute:
-        return MaterialPageRoute(builder: (_) => const LoginView());
+        return MaterialPageRoute(builder: (_) => const RegisterView());
       // case Routes.forgotPasswordRoute:
       //   return MaterialPageRoute(builder: (_) => const ForgetPassword());
       // case Routes.registerRoute:

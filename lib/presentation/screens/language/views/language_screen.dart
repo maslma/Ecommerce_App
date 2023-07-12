@@ -26,7 +26,7 @@ class LanguageView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 210.h,),
+                  SizedBox(height: 350.h,),
                   Text(AppStrings.ecommerceShop.tr(context),style: TextStyle(fontWeight: FontWeight.w700,fontSize:40.sp),),
                   SizedBox(height: 70.h,),
                   Text(AppStrings.selectLanguage.tr(context),style: TextStyle(fontSize: 20.sp,fontWeight: FontWeight.w700)),
