@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/data/localization/app_lang.dart';
 import 'package:ecommerce_app/presentation/global_widgets/global_button.dart';
 import 'package:ecommerce_app/presentation/presentation_managers/color_managers.dart';
+import 'package:ecommerce_app/presentation/presentation_managers/routes_managers.dart';
 import 'package:ecommerce_app/presentation/presentation_managers/string_manager.dart';
 import 'package:ecommerce_app/presentation/screens/onboarding/view_model/onboarding_cubit.dart';
 import 'package:ecommerce_app/presentation/screens/onboarding/view_model/onboarding_state.dart';
@@ -24,6 +25,28 @@ class OnBoardingView extends StatelessWidget {
               body: SafeArea(
                 child: Column(
                   children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20.w, vertical: 25.h),
+                          child: GestureDetector(
+                              onTap: () {
+                                Navigator.pushReplacementNamed(
+                                    context, Routes.loginRoute);
+                              },
+                              child: Text(
+                                AppStrings.skip.tr(context),
+                                style: TextStyle(
+                                    fontSize: 18.sp,
+                                    fontWeight: FontWeight.w700,
+                                    color: ColorManager.primaryColor),
+                                textAlign: TextAlign.center,
+                              )),
+                        ),
+                      ],
+                    ),
                     const Expanded(
                       flex: 3,
                       child: CustomSliderOnBoarding(),

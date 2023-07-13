@@ -28,6 +28,7 @@
   "signUp" : "Sign Up",
   "login" : "Login",
   "login2" : "Login",
-  "forgetPassword" : "Forget Password ?"
+  "forgetPassword" : "Forget Password ?",
+  "skip" : "Skip"
 
 }

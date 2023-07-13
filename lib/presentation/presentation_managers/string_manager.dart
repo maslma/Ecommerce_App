@@ -3,6 +3,7 @@ class AppStrings {
   static const String lang = "lang";
   static const String arabic = "arabic";
   static const String enter = "enter";
+  static const String skip = "skip";
   static const String ecommerceShop = "ecommerceShop";
   static const String next = "next";
   static const String chooseProduct = "chooseProduct";

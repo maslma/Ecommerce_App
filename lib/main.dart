@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
                   title: 'Ecommerce App',
                   theme: getThemeData(),
                   onGenerateRoute: RoutesGenerator.getRoutes,
-                  initialRoute: Routes.languageRoute,
+                  initialRoute: Routes.splashRoute,
                   locale: state is ChangeLocaleState ? state.locale : null,
                   localizationsDelegates: const [
                     AppLocalizations.delegate,

@@ -28,7 +28,8 @@
   "signUp" : "تسجيل جديد",
   "login" : "تسجيل الدخول",
   "login2" : "تسجيل ",
-  "forgetPassword" : "نسيت رقم المرور ؟"
+  "forgetPassword" : "نسيت رقم المرور ؟",
+  "skip" : "تخطي"
 
 
 }
