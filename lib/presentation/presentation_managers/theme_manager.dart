@@ -15,6 +15,6 @@ ThemeData getThemeData()
             fontSize: 15.sp,
             fontWeight: FontWeight.bold),
     ),
-    fontFamily: "PlayfairDisplay"
+    fontFamily: "Cairo"
   );
 }

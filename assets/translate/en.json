@@ -10,6 +10,24 @@
   "easyPayment" : "Easy And Safe Payment",
   "checkoutSafePayment" :  "Easy Checkout & Safe Payment \n method. Trusted by our Customers \n from all over the world.",
   "trackYourOrder" : "Track Your Order",
-  "trackerOrder" :  "Best Tracker has been Used For \n Track your order. You\\'ll know where \n you products at the moment"
+  "trackerOrder" :  "Best Tracker has been Used For \n Track your order. You\\'ll know where \n you products at the moment",
+  "register" : "Register",
+  "register2" : "Register",
+  "pleaseEnter" : "Please Enter your Phone and password\n to continue",
+  "fullName" : "Full Name",
+  "enterFillName" : "Enter your fill name",
+  "phone" : "Phone",
+  "enterPhone" : "Enter your phone",
+  "password" : "Password",
+  "enterPassword" : "Enter your password",
+  "or" : "OR",
+  "facebook" : "Facebook",
+  "google" : "Google",
+  "haveAccount" : "Have Account ?",
+  "signIn" : "Sign in",
+  "signUp" : "Sign Up",
+  "login" : "Login",
+  "login2" : "Login",
+  "forgetPassword" : "Forget Password ?"
 
 }
