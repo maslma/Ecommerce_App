@@ -15,6 +15,7 @@ TextEditingController passwordLogin = TextEditingController();
     phoneLogin.clear();
     passwordLogin.clear();
   }
+
   //SignUp
   TextEditingController fullNameSignUp = TextEditingController();
   TextEditingController phoneSignUp = TextEditingController();
@@ -25,4 +26,26 @@ TextEditingController passwordLogin = TextEditingController();
     passwordSignUp.clear();
     phoneSignUp .clear();
   }
+
+  //ForgetPassword
+  TextEditingController phoneForgetPassword = TextEditingController();
+
+  void clearForgetPasswordText() {
+    phoneForgetPassword.clear();
+  }
+
+  //VerifyCode
+
+  String? verifyCode ;
+
+  //Reset Password
+  TextEditingController passwordResetPassword  = TextEditingController();
+  TextEditingController confirmPasswordResetPassword  = TextEditingController();
+
+  void clearResetPasswordText() {
+    passwordResetPassword.clear();
+    confirmPasswordResetPassword.clear();
+
+  }
+
 }

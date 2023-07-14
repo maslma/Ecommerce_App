@@ -1,5 +1,11 @@
+import 'package:ecommerce_app/presentation/screens/auth/views/check_phone.dart';
+import 'package:ecommerce_app/presentation/screens/auth/views/forget_password.dart';
 import 'package:ecommerce_app/presentation/screens/auth/views/login_screen.dart';
 import 'package:ecommerce_app/presentation/screens/auth/views/register_screen.dart';
+import 'package:ecommerce_app/presentation/screens/auth/views/reset_password.dart';
+import 'package:ecommerce_app/presentation/screens/auth/views/success_register.dart';
+import 'package:ecommerce_app/presentation/screens/auth/views/success_reset_password.dart';
+import 'package:ecommerce_app/presentation/screens/auth/views/verify_code.dart';
 import 'package:ecommerce_app/presentation/screens/language/views/language_screen.dart';
 import 'package:ecommerce_app/presentation/screens/onboarding/views/onboarding_screen.dart';
 import 'package:ecommerce_app/presentation/screens/splash/splash_view.dart';
@@ -12,9 +18,14 @@ class Routes {
   static const String languageRoute = '/languageRoute';
   static const String loginRoute = '/login';
   static const String registerRoute = '/register';
+  static const String forgotPasswordRoute = '/forgetPassword';
+  static const String resetPasswordRoute = '/resetPassword';
+  static const String verifyCodeRoute = '/verifyCode';
+  static const String checkPhoneRoute = '/checkPhone';
+  static const String successResetRoute = '/successReset';
+  static const String successRegisterRoute = '/successRegister';
   static const String homeRoute = '/home';
   static const String bottomNav = '/bottomNav';
-  static const String forgotPasswordRoute = '/forgotPasswor';
   static const String mainRoute = '/main';
   static const String profileRoute = '/profile';
   static const String preConsultingRoute = '/preConsulting';
@@ -33,16 +44,18 @@ class RoutesGenerator {
         return MaterialPageRoute(builder: (_) => const RegisterView());
         case Routes.loginRoute:
         return MaterialPageRoute(builder: (_) => const LoginView());
-      // case Routes.forgotPasswordRoute:
-      //   return MaterialPageRoute(builder: (_) => const ForgetPassword());
-      // case Routes.registerRoute:
-      //   return MaterialPageRoute(builder: (_) => const RegisterView());
-      // case Routes.bottomNav:
-      //   return MaterialPageRoute(builder: (_) => const BottomNavView());
-      // case Routes.homeRoute:
-      //   return MaterialPageRoute(builder: (_) => const HomeViews());
-      // case Routes.preConsultingRoute:
-      //   return MaterialPageRoute(builder: (_) => const PreConsultingView());
+      case Routes.forgotPasswordRoute:
+        return MaterialPageRoute(builder: (_) => const ForgetPasswordView());
+      case Routes.resetPasswordRoute:
+        return MaterialPageRoute(builder: (_) => const ResetPasswordView());
+      case Routes.verifyCodeRoute:
+        return MaterialPageRoute(builder: (_) => const VerifyCodeView());
+      case Routes.successResetRoute:
+        return MaterialPageRoute(builder: (_) => const SuccessResetPassword());
+      case Routes.successRegisterRoute:
+        return MaterialPageRoute(builder: (_) => const SuccessRegister());
+      case Routes.checkPhoneRoute:
+        return MaterialPageRoute(builder: (_) => const CheckPhoneView());
 
       default:
         return unDefinedRoute();

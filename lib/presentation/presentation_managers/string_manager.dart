@@ -30,5 +30,25 @@ class AppStrings {
   static const String login = "login";
   static const String login2 = "login2";
   static const String forgetPassword = "forgetPassword";
+  static const String forgetPassword2 = "forgetPassword2";
+  static const String enterResetPassword = "enterResetPassword";
+  static const String resetPassword = "resetPassword";
+  static const String resetPassword2 = "resetPassword2";
+  static const String createPassword = "createPassword";
+  static const String confirmPassword = "confirmPassword";
+  static const String enterConfirmPassword = "enterConfirmPassword";
+  static const String savePassword = "savePassword";
+  static const String Otp = "Otp";
+  static const String authenticationCode = "authenticationCode";
+  static const String number = "number";
+  static const String codeSent = "codeSent";
+  static const String second = "second";
+  static const String submit = "submit";
+  static const String checkPhone = "checkPhone";
+  static const String check = "check";
+  static const String success = "success";
+  static const String successfullyRegistered = "successfullyRegistered";
+  static const String setSuccessfully = "setSuccessfully";
+  static const String goToLogin = "goToLogin";
 
 }

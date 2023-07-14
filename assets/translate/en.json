@@ -29,6 +29,25 @@
   "login" : "Login",
   "login2" : "Login",
   "forgetPassword" : "Forget Password ?",
-  "skip" : "Skip"
-
+  "forgetPassword2" : "Forget Password",
+  "skip" : "Skip",
+  "enterResetPassword" : "Enter your Phone Number\n to reset password.",
+  "resetPassword" : "Reset Password",
+  "resetPassword2" : "Reset Password",
+  "createPassword" : "Create strong and secured\nnew password.",
+  "confirmPassword" : "Confirm Password",
+  "enterConfirmPassword" : "Enter Your Confirm Password",
+  "savePassword" : "Save Password",
+  "Otp" : "OTP",
+  "authenticationCode" : "An Authentecation code has been sent to",
+  "number" : "(+02) 01003625286",
+  "codeSent" : "Code Sent. Resend Code in",
+  "second" : "00:50",
+  "submit" : "Submit",
+  "checkPhone" : "Check Phone",
+  "check" : "Check",
+  "success" : "Success",
+  "successfullyRegistered" : "Successfully registered",
+  "setSuccessfully" : "Password has been reset successfully",
+  "goToLogin" : "Go To Login"
 }

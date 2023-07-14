@@ -29,7 +29,27 @@
   "login" : "تسجيل الدخول",
   "login2" : "تسجيل ",
   "forgetPassword" : "نسيت رقم المرور ؟",
-  "skip" : "تخطي"
+  "forgetPassword2" : "نسيت رقم المرور",
+  "skip" : "تخطي",
+  "enterResetPassword" :"برجاء ادخال رقم الهاتف \nلتاكيد حسابك",
+  "resetPassword" : "ارسال",
+  "resetPassword2" : "اعادة كلمة المرور",
+  "createPassword" : "برجاء ادخال كلمة مرور \nلتاكيد حسابك",
+  "confirmPassword" : "تاكيد رقم المرور",
+  "enterConfirmPassword" : "أدخل تأكيد كلمة المرور الخاصة بك",
+  "savePassword" : "تسجيل",
+  "Otp" : "رمز الدخول",
+  "authenticationCode" : "رمز التحقيق تم ارسالة الي رقم",
+  "number" : "(+02) 01003625286",
+  "codeSent" : "سيتم ارسال الكود مرة اخري ",
+  "second" : "00:50",
+  "submit" : "ارسال",
+  "checkPhone" : "تحقق من الهاتف",
+  "check" : "تحقق",
+  "success" : "بنجاح",
+  "successfullyRegistered" : "سجلت بنجاح",
+  "setSuccessfully" : "تم اعادة تعيين كلمة المرور بنجاح",
+  "goToLogin" : "الذهاب لتسجيل الدخول"
 
 
 }

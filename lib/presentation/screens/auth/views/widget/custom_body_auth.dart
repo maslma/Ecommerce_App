@@ -4,7 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomBodyAuth extends StatelessWidget {
   final String body;
-  const CustomBodyAuth({super.key, required this.body});
+  final Color? color;
+  const CustomBodyAuth({super.key, required this.body, this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class CustomBodyAuth extends StatelessWidget {
       style: TextStyle(
           fontSize: 14.sp,
           fontWeight: FontWeight.w500,
-          color: ColorManager.grey2),
+          color:  color ?? ColorManager.grey2),
       textAlign: TextAlign.center,
     );
   }

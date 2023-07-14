@@ -96,7 +96,7 @@ class RegisterView extends StatelessWidget {
                     colorText: Colors.white,
                     onPressed: () {
                       cubit.clearSignUpText();
-                      Navigator.pushReplacementNamed(context, Routes.loginRoute);
+                      Navigator.pushReplacementNamed(context, Routes.checkPhoneRoute);
                     },
                   ),
                   SizedBox(
