@@ -1,7 +1,54 @@
-// import 'package:flutter/material.dart';
-// import '../data/local/chach_helper.dart';
-//
-//
+import 'package:ecommerce_app/data/localization/app_lang.dart';
+import 'package:ecommerce_app/presentation/presentation_managers/string_manager.dart';
+import 'package:flutter/material.dart';
+
+bool isValidUsername(String val) {
+  const pattern = r'^[a-zA-Z0-9_]+$';
+  return RegExp(pattern).hasMatch(val);
+}
+
+bool isValidEmail(String val) {
+  const pattern = r'^[\w-]+(\.[\w-]+)*@([a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.)+[a-zA-Z]{2,7}$';
+  return RegExp(pattern).hasMatch(val);
+}
+
+bool isValidPhone(String val) {
+  const pattern = r'^\+?[0-9]{6,}$';
+  return RegExp(pattern).hasMatch(val);
+}
+
+ validateInput(String val, int min, int max, String type,BuildContext context) {
+  if (type == AppStrings.fullName) {
+    if (!isValidUsername(val)) {
+      return AppStrings.notValidUsername.tr(context);
+    }
+  }
+
+  if (type == "email") {
+    if (!isValidEmail(val)) {
+      return AppStrings.notValidEmail.tr(context);
+    }
+  }
+
+  if (type == AppStrings.phone) {
+    if (!isValidPhone(val)) {
+      return AppStrings.notValidPhone.tr(context);
+    }
+  }
+
+  if (val.isEmpty) {
+      return AppStrings.cantBeEmpty.tr(context);
+  }
+
+  if (val.length < min) {
+    return "${AppStrings.cantBeLessThan.tr(context)}$min"  ;
+  }
+
+  if (val.length > max) {
+    return "${AppStrings.cantBeLargerThan.tr(context)} $max";
+  }
+}
+
 // navTo({
 //   required String routeName,
 //   required BuildContext context,

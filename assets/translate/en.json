@@ -49,5 +49,11 @@
   "success" : "Success",
   "successfullyRegistered" : "Successfully registered",
   "setSuccessfully" : "Password has been reset successfully",
-  "goToLogin" : "Go To Login"
+  "goToLogin" : "Go To Login",
+  "notValidUsername" : "Not valid username",
+  "notValidEmail" : "Not valid email",
+  "notValidPhone" : "Not valid phone",
+  "cantBeEmpty" : "Can't be Empty",
+  "cantBeLessThan" : "Can't be less than",
+  "cantBeLargerThan" : "Can't be larger than"
 }

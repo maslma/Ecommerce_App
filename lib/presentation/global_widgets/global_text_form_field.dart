@@ -10,6 +10,7 @@ class GlobalTextFormField extends StatelessWidget {
   final IconData? suffixIcon;
   final String? hintText;
   final int? maxLength;
+  final String? Function(String?) valid;
   const GlobalTextFormField(
       {super.key,
        this.height,
@@ -18,11 +19,13 @@ class GlobalTextFormField extends StatelessWidget {
        this.controller,
        this.suffixIcon,
          this.hintText,
-        this.maxLength});
+        this.maxLength,
+        required this.valid});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: valid,
       cursorColor: ColorManager.black,
       textAlign: TextAlign.start,
       controller: controller,

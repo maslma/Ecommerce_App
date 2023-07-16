@@ -27,12 +27,11 @@ class SuccessRegister extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 250.h,),
-              Center(
-                  child: Icon(
-                    Icons.check_circle_outline,
-                    size: 250.sp,
-                    color: ColorManager.primaryColor,
-                  )),
+              Icon(
+                Icons.check_circle_outline,
+                size: 250.sp,
+                color: ColorManager.primaryColor,
+              ),
               CustomTitleAuth(
                 title: AppStrings.successfullyRegistered.tr(context),
               ),

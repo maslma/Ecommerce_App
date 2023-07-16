@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
                 return MaterialApp(
                   debugShowCheckedModeBanner: false,
                   title: 'Ecommerce App',
-                  theme: getThemeData(),
+                  theme: LanguageCubit.get(context).themeData ,
                   onGenerateRoute: RoutesGenerator.getRoutes,
                   initialRoute: Routes.splashRoute,
                   locale: state is ChangeLocaleState ? state.locale : null,

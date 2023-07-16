@@ -128,10 +128,9 @@ flutter:
         - asset: assets/fonts/Cairo/Cairo-Bold.ttf
           weight: 700
 
-    - family: PlayfairDisplay
+    - family: Almarai
       fonts:
-         - asset: assets/fonts/PlayfairDisplay/PlayfairDisplay-Regular.ttf
-         - asset: assets/fonts/PlayfairDisplay/PlayfairDisplay-Bold.ttf
+         - asset: assets/fonts/Almarai/Almarai-Regular.ttf
            weight: 700
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

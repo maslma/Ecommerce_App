@@ -50,5 +50,11 @@ class AppStrings {
   static const String successfullyRegistered = "successfullyRegistered";
   static const String setSuccessfully = "setSuccessfully";
   static const String goToLogin = "goToLogin";
+  static const String notValidUsername = "notValidUsername";
+  static const String notValidEmail = "notValidEmail";
+  static const String notValidPhone = "notValidPhone";
+  static const String cantBeEmpty = "cantBeEmpty";
+  static const String cantBeLessThan = "cantBeLessThan";
+  static const String cantBeLargerThan = "cantBeLargerThan";
 
 }

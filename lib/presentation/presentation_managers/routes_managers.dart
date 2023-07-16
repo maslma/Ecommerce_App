@@ -1,4 +1,3 @@
-import 'package:ecommerce_app/presentation/screens/auth/views/check_phone.dart';
 import 'package:ecommerce_app/presentation/screens/auth/views/forget_password.dart';
 import 'package:ecommerce_app/presentation/screens/auth/views/login_screen.dart';
 import 'package:ecommerce_app/presentation/screens/auth/views/register_screen.dart';
@@ -6,6 +5,7 @@ import 'package:ecommerce_app/presentation/screens/auth/views/reset_password.dar
 import 'package:ecommerce_app/presentation/screens/auth/views/success_register.dart';
 import 'package:ecommerce_app/presentation/screens/auth/views/success_reset_password.dart';
 import 'package:ecommerce_app/presentation/screens/auth/views/verify_code.dart';
+import 'package:ecommerce_app/presentation/screens/auth/views/verify_code_register.dart';
 import 'package:ecommerce_app/presentation/screens/language/views/language_screen.dart';
 import 'package:ecommerce_app/presentation/screens/onboarding/views/onboarding_screen.dart';
 import 'package:ecommerce_app/presentation/screens/splash/splash_view.dart';
@@ -21,7 +21,7 @@ class Routes {
   static const String forgotPasswordRoute = '/forgetPassword';
   static const String resetPasswordRoute = '/resetPassword';
   static const String verifyCodeRoute = '/verifyCode';
-  static const String checkPhoneRoute = '/checkPhone';
+  static const String verifyCodeRegisterRoute = '/verifyCodeRegister';
   static const String successResetRoute = '/successReset';
   static const String successRegisterRoute = '/successRegister';
   static const String homeRoute = '/home';
@@ -54,8 +54,8 @@ class RoutesGenerator {
         return MaterialPageRoute(builder: (_) => const SuccessResetPassword());
       case Routes.successRegisterRoute:
         return MaterialPageRoute(builder: (_) => const SuccessRegister());
-      case Routes.checkPhoneRoute:
-        return MaterialPageRoute(builder: (_) => const CheckPhoneView());
+        case Routes.verifyCodeRegisterRoute:
+        return MaterialPageRoute(builder: (_) => const VerifyCodeRegister());
 
       default:
         return unDefinedRoute();

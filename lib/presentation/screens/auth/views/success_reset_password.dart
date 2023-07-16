@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SuccessResetPassword extends StatelessWidget {
-
   const SuccessResetPassword({super.key});
 
   @override
@@ -27,12 +26,13 @@ class SuccessResetPassword extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 250.h,),
-              Center(
-                  child: Icon(
-                    Icons.check_circle_outline,
-                    size: 250.sp,
-                    color: ColorManager.primaryColor,
-                  )),
+              Expanded(
+                child: Icon(
+                  Icons.check_circle_outline,
+                  size: 250.sp,
+                  color: ColorManager.primaryColor,
+                ),
+              ),
               CustomTitleAuth(
                 title: AppStrings.setSuccessfully.tr(context),
               ),

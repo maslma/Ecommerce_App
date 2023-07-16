@@ -1,5 +1,4 @@
 import 'package:ecommerce_app/data/localization/app_lang.dart';
-import 'package:ecommerce_app/presentation/global_widgets/global_button.dart';
 import 'package:ecommerce_app/presentation/presentation_managers/color_managers.dart';
 import 'package:ecommerce_app/presentation/presentation_managers/routes_managers.dart';
 import 'package:ecommerce_app/presentation/presentation_managers/string_manager.dart';
@@ -11,8 +10,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class VerifyCodeView extends StatelessWidget {
-  const VerifyCodeView({super.key});
+class VerifyCodeRegister extends StatelessWidget {
+  const VerifyCodeRegister({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -58,20 +57,10 @@ class VerifyCodeView extends StatelessWidget {
                         fontSize: 24.sp),
                     showFieldAsBox: true,
                     onCodeChanged: (String code) {},
+                    onSubmit: (String verificationCode){
+                      Navigator.pushNamed(context, Routes.successRegisterRoute);
+                    },
                   ),
-                ),
-                SizedBox(
-                  height: 48.h,
-                ),
-                GlobalButton(
-                  height: 60.h,
-                  width: 388.w,
-                  radius: 8.r,
-                  text: AppStrings.submit.tr(context),
-                  colorText: Colors.white,
-                  onPressed: () {
-                    Navigator.pushReplacementNamed(context, Routes.resetPasswordRoute);
-                  },
                 ),
                 SizedBox(
                   height: 32.h,
