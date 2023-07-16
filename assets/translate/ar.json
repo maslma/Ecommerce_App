@@ -55,7 +55,11 @@
   "notValidPhone" : "هاتف غير صالح",
   "cantBeEmpty" : "لا يمكن أن تكون فارغة",
   "cantBeLessThan" : "لا يمكن أن يكون أقل من",
-  "cantBeLargerThan" : "لا يمكن أن يكون أكبر من"
+  "cantBeLargerThan" : "لا يمكن أن يكون أكبر من",
+  "alert" : "تنبيه",
+  "doYouApplication" : "هل تريد الخروج من التطبيق",
+  "confirm" : "تاكيد",
+  "cancel" : "الغاء"
 
 
 }

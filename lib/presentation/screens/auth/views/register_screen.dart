@@ -25,128 +25,135 @@ class RegisterView extends StatelessWidget {
         builder: (context, state) {
           AuthCubit cubit = AuthCubit.get(context);
           return Scaffold(
-            body: Container(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: Form(
-                key: cubit.formKeySignUp,
-                child: ListView(
-                  children: [
-                    SizedBox(
-                      height: 70.h,
-                    ),
-                    CustomTitleAuth(
-                      title: AppStrings.register.tr(context),
-                    ),
-                    SizedBox(
-                      height: 14.h,
-                    ),
-                    CustomBodyAuth(
-                      body: AppStrings.pleaseEnter.tr(context),
-                    ),
-                    SizedBox(
-                      height: 18.h,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CustomTitleTextField(titleTextField: AppStrings.fullName.tr(context) ,),
-                        SizedBox(
-                          height: 8.h,
-                        ),
-                        GlobalTextFormField(
-                          valid: (val){
-                            return validateInput(val!, 3, 20, AppStrings.fullName.tr(context),context);
-                          },
-                          controller: cubit.fullNameSignUp,
-                          hintText: AppStrings.enterFillName.tr(context),
-                          keyboardType: TextInputType.name,
-                          suffixIcon: Icons.person_2_outlined,
-                        ),
-                        SizedBox(
-                          height: 18.h,
-                        ),
-                        CustomTitleTextField(titleTextField:AppStrings.phone.tr(context) ,),
-                        SizedBox(
-                          height: 8.h,
-                        ),
-                        GlobalTextFormField(
-                          valid: (val){
-                            return validateInput(val!, 10, 12, AppStrings.phone.tr(context),context);
-
-                          },
-                          controller: cubit.phoneSignUp,
-                          hintText: AppStrings.enterPhone.tr(context),
-                          keyboardType: TextInputType.phone,
-                          suffixIcon: Icons.phone_outlined,
-                        ),
-                        SizedBox(
-                          height: 18.h,
-                        ),
-                        CustomTitleTextField(titleTextField:AppStrings.password.tr(context) ,),
-                        SizedBox(
-                          height: 8.h,
-                        ),
-                        GlobalTextFormField(
-                          valid: (val){
-                            return validateInput(val!, 5, 30, AppStrings.password.tr(context),context);
-                          },
-                          controller: cubit.passwordSignUp,
-                          hintText: AppStrings.enterPassword.tr(context),
-                          keyboardType: TextInputType.visiblePassword,
-                          suffixIcon: Icons.remove_red_eye_outlined,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 48.h,
-                    ),
-                    GlobalButton(
-                      height: 60.h,
-                      width: 388.w,
-                      radius: 8.r,
-                      text: AppStrings.register2.tr(context),
-                      colorText: Colors.white,
-                      onPressed: () {
-                        cubit.signUp(context);
-                      },
-                    ),
-                    SizedBox(
-                      height: 15.h,
-                    ),
-                    Text(
-                      AppStrings.or.tr(context),
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w500,
+            body: WillPopScope(
+              onWillPop:() => alertExitApp(context),
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                child: Form(
+                  key: cubit.formKeySignUp,
+                  child: ListView(
+                    children: [
+                      SizedBox(
+                        height: 70.h,
                       ),
-                      textAlign: TextAlign.center,
-                    ),
-                    SizedBox(
-                      height: 27.h,
-                    ),
-                    CustomSocialAuth(
-                      onTap: () {},
-                      image: ImageAssets.facebook,
-                      text: AppStrings.facebook.tr(context),
-                    ),
-                    SizedBox(
-                      height: 34.h,
-                    ),
-                    CustomSocialAuth(
-                      onTap: () {},
-                      image: ImageAssets.google,
-                      text: AppStrings.google.tr(context),
-                    ),
-                    SizedBox(
-                      height: 45.h,
-                    ),
-                    CustomHaveAccountAuth(
-                      onTap: () => Navigator.pushReplacementNamed(
-                          context, Routes.loginRoute),
-                      haveText: AppStrings.haveAccount.tr(context),
-                      accountText: AppStrings.signIn.tr(context),
-                    )
-                  ],
+                      CustomTitleAuth(
+                        title: AppStrings.register.tr(context),
+                      ),
+                      SizedBox(
+                        height: 14.h,
+                      ),
+                      CustomBodyAuth(
+                        body: AppStrings.pleaseEnter.tr(context),
+                      ),
+                      SizedBox(
+                        height: 18.h,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CustomTitleTextField(titleTextField: AppStrings.fullName.tr(context) ,),
+                          SizedBox(
+                            height: 8.h,
+                          ),
+                          GlobalTextFormField(
+                            valid: (val){
+                              return validateInput(val!, 3, 20, AppStrings.fullName.tr(context),context);
+                            },
+                            controller: cubit.fullNameSignUp,
+                            hintText: AppStrings.enterFillName.tr(context),
+                            keyboardType: TextInputType.name,
+                            suffixIcon: Icons.person_2_outlined,
+                          ),
+                          SizedBox(
+                            height: 18.h,
+                          ),
+                          CustomTitleTextField(titleTextField:AppStrings.phone.tr(context) ,),
+                          SizedBox(
+                            height: 8.h,
+                          ),
+                          GlobalTextFormField(
+                            valid: (val){
+                              return validateInput(val!, 10, 12, AppStrings.phone.tr(context),context);
+
+                            },
+                            controller: cubit.phoneSignUp,
+                            hintText: AppStrings.enterPhone.tr(context),
+                            keyboardType: TextInputType.phone,
+                            suffixIcon: Icons.phone_outlined,
+                          ),
+                          SizedBox(
+                            height: 18.h,
+                          ),
+                          CustomTitleTextField(titleTextField:AppStrings.password.tr(context) ,),
+                          SizedBox(
+                            height: 8.h,
+                          ),
+                          GlobalTextFormField(
+                            valid: (val){
+                              return validateInput(val!, 5, 30, AppStrings.password.tr(context),context);
+                            },
+                            onTapIcon: (){
+                              cubit.showPassword();
+                            },
+                            obscureText: cubit.isShowPassword,
+                            controller: cubit.passwordSignUp,
+                            hintText: AppStrings.enterPassword.tr(context),
+                            keyboardType: TextInputType.visiblePassword,
+                            suffixIcon: cubit.isShowPassword == true ? Icons.visibility_outlined  :  Icons.visibility_off_outlined,
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 48.h,
+                      ),
+                      GlobalButton(
+                        height: 60.h,
+                        width: 388.w,
+                        radius: 8.r,
+                        text: AppStrings.register2.tr(context),
+                        colorText: Colors.white,
+                        onPressed: () {
+                          cubit.signUp(context);
+                        },
+                      ),
+                      SizedBox(
+                        height: 15.h,
+                      ),
+                      Text(
+                        AppStrings.or.tr(context),
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(
+                        height: 27.h,
+                      ),
+                      CustomSocialAuth(
+                        onTap: () {},
+                        image: ImageAssets.facebook,
+                        text: AppStrings.facebook.tr(context),
+                      ),
+                      SizedBox(
+                        height: 34.h,
+                      ),
+                      CustomSocialAuth(
+                        onTap: () {},
+                        image: ImageAssets.google,
+                        text: AppStrings.google.tr(context),
+                      ),
+                      SizedBox(
+                        height: 45.h,
+                      ),
+                      CustomHaveAccountAuth(
+                        onTap: () => Navigator.pushReplacementNamed(
+                            context, Routes.loginRoute),
+                        haveText: AppStrings.haveAccount.tr(context),
+                        accountText: AppStrings.signIn.tr(context),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),

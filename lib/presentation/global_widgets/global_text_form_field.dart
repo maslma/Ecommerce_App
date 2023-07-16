@@ -11,6 +11,9 @@ class GlobalTextFormField extends StatelessWidget {
   final String? hintText;
   final int? maxLength;
   final String? Function(String?) valid;
+  final bool? obscureText;
+  final Function() ? onTapIcon ;
+
   const GlobalTextFormField(
       {super.key,
        this.height,
@@ -20,12 +23,14 @@ class GlobalTextFormField extends StatelessWidget {
        this.suffixIcon,
          this.hintText,
         this.maxLength,
-        required this.valid});
+        required this.valid,
+        this.obscureText, this.onTapIcon});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       validator: valid,
+      obscureText:obscureText == null || obscureText ==  false ? false : true ,
       cursorColor: ColorManager.black,
       textAlign: TextAlign.start,
       controller: controller,
@@ -36,9 +41,12 @@ class GlobalTextFormField extends StatelessWidget {
           fontWeight: FontWeight.w600,
           fontSize: 16.sp),
       decoration: InputDecoration(
-          suffixIcon: Icon(
-            suffixIcon,
-            color: ColorManager.grey2,
+          suffixIcon: GestureDetector(
+            onTap:onTapIcon ,
+            child: Icon(
+              suffixIcon,
+              color: ColorManager.grey2,
+            ),
           ),
           hintText: hintText,
           hintStyle: TextStyle(

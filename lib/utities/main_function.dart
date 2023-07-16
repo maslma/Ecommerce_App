@@ -1,6 +1,8 @@
 import 'package:ecommerce_app/data/localization/app_lang.dart';
+import 'package:ecommerce_app/presentation/presentation_managers/color_managers.dart';
 import 'package:ecommerce_app/presentation/presentation_managers/string_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 bool isValidUsername(String val) {
   const pattern = r'^[a-zA-Z0-9_]+$';
@@ -8,7 +10,8 @@ bool isValidUsername(String val) {
 }
 
 bool isValidEmail(String val) {
-  const pattern = r'^[\w-]+(\.[\w-]+)*@([a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.)+[a-zA-Z]{2,7}$';
+  const pattern =
+      r'^[\w-]+(\.[\w-]+)*@([a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.)+[a-zA-Z]{2,7}$';
   return RegExp(pattern).hasMatch(val);
 }
 
@@ -17,7 +20,7 @@ bool isValidPhone(String val) {
   return RegExp(pattern).hasMatch(val);
 }
 
- validateInput(String val, int min, int max, String type,BuildContext context) {
+validateInput(String val, int min, int max, String type, BuildContext context) {
   if (type == AppStrings.fullName) {
     if (!isValidUsername(val)) {
       return AppStrings.notValidUsername.tr(context);
@@ -37,16 +40,94 @@ bool isValidPhone(String val) {
   }
 
   if (val.isEmpty) {
-      return AppStrings.cantBeEmpty.tr(context);
+    return AppStrings.cantBeEmpty.tr(context);
   }
 
   if (val.length < min) {
-    return "${AppStrings.cantBeLessThan.tr(context)}$min"  ;
+    return "${AppStrings.cantBeLessThan.tr(context)}$min";
   }
 
   if (val.length > max) {
     return "${AppStrings.cantBeLargerThan.tr(context)} $max";
   }
+}
+
+Future<bool> alertExitApp(BuildContext context) async {
+  bool? confirmed = await showDialog<bool>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        backgroundColor: ColorManager.white,
+        title:  Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              AppStrings.alert.tr(context),
+              style: const TextStyle(
+                color: ColorManager.primaryColor,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        content:  Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(AppStrings.doYouApplication.tr(context),
+              style: const TextStyle(
+              fontWeight: FontWeight.bold,
+            ),),
+          ],
+        ),
+        actions: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all(ColorManager.primaryColor),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pop(true); // Return true when confirmed
+                  },
+                  child: Text(
+                    AppStrings.confirm.tr(context),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.w700,
+                      color: ColorManager.white,
+                    ),
+                  )),
+              SizedBox(
+                width: 4.w,
+              ),
+              ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all(ColorManager.primaryColor),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop(false);
+                  },
+                  child: Text(
+                    AppStrings.cancel.tr(context),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.w700,
+                      color: ColorManager.white,
+                    ),
+                  )),
+            ],
+          ),
+        ],
+      );
+    },
+  );
+  return confirmed ?? false; // Return false if confirmed is null
 }
 
 // navTo({

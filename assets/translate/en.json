@@ -55,5 +55,9 @@
   "notValidPhone" : "Not valid phone",
   "cantBeEmpty" : "Can't be Empty",
   "cantBeLessThan" : "Can't be less than",
-  "cantBeLargerThan" : "Can't be larger than"
+  "cantBeLargerThan" : "Can't be larger than",
+  "alert" : "Alert",
+  "doYouApplication" : "Do you want to exit the application",
+  "confirm" : "Confirm",
+  "cancel" : "Cancel"
 }

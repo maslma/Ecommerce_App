@@ -8,6 +8,14 @@ class AuthCubit extends Cubit<AuthState> {
 
   static AuthCubit get(context) => BlocProvider.of(context);
 
+  bool isShowPassword = true;
+
+  showPassword(){
+    isShowPassword = isShowPassword == true ? false : true ;
+    emit(AuthShowPassword());
+  }
+
+
   //Login
   GlobalKey<FormState> formKeyLogin = GlobalKey<FormState>();
   TextEditingController phoneLogin = TextEditingController();

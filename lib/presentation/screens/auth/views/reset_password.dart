@@ -53,10 +53,14 @@ class ResetPasswordView extends StatelessWidget {
                         valid: (val){
                           return validateInput(val!, 5, 30, AppStrings.password.tr(context),context);
                         },
+                        onTapIcon: (){
+                          cubit.showPassword();
+                        },
+                        obscureText: cubit.isShowPassword,
                         controller: cubit.passwordResetPassword,
                         hintText: AppStrings.enterPassword.tr(context),
                         keyboardType: TextInputType.visiblePassword,
-                        suffixIcon: Icons.remove_red_eye_outlined,
+                        suffixIcon: cubit.isShowPassword == true ? Icons.visibility_outlined  :  Icons.visibility_off_outlined,
                       ),
                       SizedBox(
                         height: 18.h,
@@ -71,10 +75,14 @@ class ResetPasswordView extends StatelessWidget {
                         valid: (val){
                           return validateInput(val!, 5, 30, AppStrings.password.tr(context),context);
                         },
+                        onTapIcon: (){
+                          cubit.showPassword();
+                        },
+                        obscureText: cubit.isShowPassword,
                         controller: cubit.confirmPasswordResetPassword,
                         hintText: AppStrings.enterConfirmPassword.tr(context),
                         keyboardType: TextInputType.visiblePassword,
-                        suffixIcon: Icons.remove_red_eye_outlined,
+                        suffixIcon: cubit.isShowPassword == true ? Icons.visibility_outlined  :  Icons.visibility_off_outlined,
                       ),
                     ],
                   ),

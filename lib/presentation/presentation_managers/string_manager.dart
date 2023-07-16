@@ -56,5 +56,9 @@ class AppStrings {
   static const String cantBeEmpty = "cantBeEmpty";
   static const String cantBeLessThan = "cantBeLessThan";
   static const String cantBeLargerThan = "cantBeLargerThan";
+  static const String alert = "alert";
+  static const String doYouApplication = "doYouApplication";
+  static const String confirm = "confirm";
+  static const String cancel = "cancel";
 
 }
