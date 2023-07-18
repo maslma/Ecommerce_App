@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/data/local/chach_helper.dart';
 import 'package:ecommerce_app/data/localization/app_lang.dart';
 import 'package:ecommerce_app/presentation/presentation_managers/color_managers.dart';
 import 'package:ecommerce_app/presentation/presentation_managers/string_manager.dart';
@@ -191,4 +192,4 @@ Future<bool> alertExitApp(BuildContext context) async {
 //   },
 // );
 //
-// String? token = CachHelper.getData(key: 'token');
+String? token = ChachHelper.getData(key: 'token');

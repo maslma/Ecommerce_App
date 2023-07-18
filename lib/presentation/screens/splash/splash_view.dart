@@ -1,7 +1,10 @@
 import 'dart:async';
+import 'package:ecommerce_app/data/local/chach_helper.dart';
 import 'package:ecommerce_app/presentation/presentation_managers/assets_managers.dart';
 import 'package:ecommerce_app/presentation/presentation_managers/color_managers.dart';
 import 'package:ecommerce_app/presentation/presentation_managers/routes_managers.dart';
+import 'package:ecommerce_app/presentation/screens/auth/views/login_screen.dart';
+import 'package:ecommerce_app/utities/main_function.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -20,19 +23,17 @@ class _SplashViewState extends State<SplashView> {
   }
 
   _goNext() {
-    // uId = CachHelper.getData(key: 'uId');
-    // debugPrint(uId);
-    // uId == null
-    //     ?
-    Navigator.pushReplacementNamed(context, Routes.languageRoute);
-        // : Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
-        //     MaterialPageRoute(
-        //       builder: (context) {
-        //         return const BottomNavBarView();
-        //       },
-        //     ),
-        //     (route) => false,
-        //   );
+    token = ChachHelper.getData(key: '1');
+    debugPrint(token);
+    token == 1 ? Navigator.pushReplacementNamed(context, Routes.languageRoute)
+        : Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
+            MaterialPageRoute(
+              builder: (context) {
+                return const LoginView();
+              },
+            ),
+            (route) => false,
+          );
   }
 
   @override

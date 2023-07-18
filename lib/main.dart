@@ -1,7 +1,6 @@
 import 'package:ecommerce_app/data/local/chach_helper.dart';
 import 'package:ecommerce_app/data/localization/app_lang.dart';
 import 'package:ecommerce_app/presentation/presentation_managers/routes_managers.dart';
-import 'package:ecommerce_app/presentation/presentation_managers/theme_manager.dart';
 import 'package:ecommerce_app/presentation/screens/auth/view_model/auth_cubit.dart';
 import 'package:ecommerce_app/presentation/screens/language/view_model/language_cubit.dart';
 import 'package:ecommerce_app/presentation/screens/onboarding/view_model/onboarding_cubit.dart';
