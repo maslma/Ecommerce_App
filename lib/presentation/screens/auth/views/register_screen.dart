@@ -34,7 +34,7 @@ class RegisterView extends StatelessWidget {
                   child: ListView(
                     children: [
                       SizedBox(
-                        height: 70.h,
+                        height: 50.h,
                       ),
                       CustomTitleAuth(
                         title: AppStrings.register.tr(context),
@@ -67,6 +67,22 @@ class RegisterView extends StatelessWidget {
                           SizedBox(
                             height: 18.h,
                           ),
+                          CustomTitleTextField(titleTextField: AppStrings.email.tr(context) ,),
+                          SizedBox(
+                            height: 8.h,
+                          ),
+                          GlobalTextFormField(
+                            valid: (val){
+                              return validateInput(val!, 3, 40, AppStrings.email.tr(context),context);
+                            },
+                            controller: cubit.emailSignUp,
+                            hintText: AppStrings.enterEmail.tr(context),
+                            keyboardType: TextInputType.emailAddress,
+                            suffixIcon: Icons.email_outlined,
+                          ),
+                          SizedBox(
+                            height: 18.h,
+                          ),
                           CustomTitleTextField(titleTextField:AppStrings.phone.tr(context) ,),
                           SizedBox(
                             height: 8.h,
@@ -74,7 +90,6 @@ class RegisterView extends StatelessWidget {
                           GlobalTextFormField(
                             valid: (val){
                               return validateInput(val!, 10, 12, AppStrings.phone.tr(context),context);
-
                             },
                             controller: cubit.phoneSignUp,
                             hintText: AppStrings.enterPhone.tr(context),
@@ -136,7 +151,7 @@ class RegisterView extends StatelessWidget {
                         text: AppStrings.facebook.tr(context),
                       ),
                       SizedBox(
-                        height: 34.h,
+                        height: 20.h,
                       ),
                       CustomSocialAuth(
                         onTap: () {},
@@ -144,14 +159,15 @@ class RegisterView extends StatelessWidget {
                         text: AppStrings.google.tr(context),
                       ),
                       SizedBox(
-                        height: 45.h,
+                        height: 35.h,
                       ),
                       CustomHaveAccountAuth(
                         onTap: () => Navigator.pushReplacementNamed(
                             context, Routes.loginRoute),
                         haveText: AppStrings.haveAccount.tr(context),
                         accountText: AppStrings.signIn.tr(context),
-                      )
+                      ),
+                      SizedBox(height: 10.h,)
                     ],
                   ),
                 ),

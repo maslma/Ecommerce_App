@@ -1,18 +1,23 @@
 import 'package:ecommerce_app/data/local/chach_helper.dart';
 import 'package:ecommerce_app/data/localization/app_lang.dart';
-import 'package:ecommerce_app/presentation/presentation_managers/routes_managers.dart';
+import 'package:ecommerce_app/data/remote/dio_helper.dart';
 import 'package:ecommerce_app/presentation/screens/auth/view_model/auth_cubit.dart';
 import 'package:ecommerce_app/presentation/screens/language/view_model/language_cubit.dart';
 import 'package:ecommerce_app/presentation/screens/onboarding/view_model/onboarding_cubit.dart';
+import 'package:ecommerce_app/presentation/screens/test/view/test_view.dart';
+import 'package:ecommerce_app/presentation/screens/test/view_model/test_cubit.dart';
 import 'package:ecommerce_app/utities/bloc_observer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ecommerce_app/presentation/presentation_managers/routes_managers.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ChachHelper.init();
+  await DioHelper.init();
   Bloc.observer = MyBlocObserver();
   runApp(const MyApp());
 }
@@ -34,6 +39,7 @@ class MyApp extends StatelessWidget {
               BlocProvider(create: (context) => LanguageCubit()..getSavedLanguage()),
               BlocProvider(create: (context) => OnBoardingCubit()),
               BlocProvider(create: (context) => AuthCubit()),
+              BlocProvider(create: (context) => TestCubit()..getData()),
             ],
             child: BlocBuilder<LanguageCubit,LanguageState>(
               builder: (context, state) {
@@ -43,6 +49,7 @@ class MyApp extends StatelessWidget {
                   theme: LanguageCubit.get(context).themeData ,
                   onGenerateRoute: RoutesGenerator.getRoutes,
                   initialRoute: Routes.splashRoute,
+                  // home: const TestView(),
                   locale: state is ChangeLocaleState ? state.locale : null,
                   localizationsDelegates: const [
                     AppLocalizations.delegate,

@@ -57,19 +57,19 @@ class LoginView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomTitleTextField(
-                          titleTextField: AppStrings.phone.tr(context),
+                          titleTextField: AppStrings.email.tr(context),
                         ),
                         SizedBox(
                           height: 8.h,
                         ),
                         GlobalTextFormField(
                           valid: (val) {
-                            return validateInput(val!, 10, 12, AppStrings.phone.tr(context),context);
+                            return validateInput(val!, 3, 40, AppStrings.email.tr(context),context);
                           },
-                          controller: cubit.phoneLogin,
-                          hintText: AppStrings.enterPhone.tr(context),
-                          keyboardType: TextInputType.phone,
-                          suffixIcon: Icons.phone_outlined,
+                          controller: cubit.emailLogin,
+                          hintText: AppStrings.enterEmail.tr(context),
+                          keyboardType: TextInputType.emailAddress,
+                          suffixIcon: Icons.email_outlined,
                         ),
                         SizedBox(
                           height: 18.h,

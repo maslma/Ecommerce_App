@@ -59,5 +59,9 @@
   "alert" : "Alert",
   "doYouApplication" : "Do you want to exit the application",
   "confirm" : "Confirm",
-  "cancel" : "Cancel"
+  "cancel" : "Cancel",
+  "email" : "Email",
+  "enterEmail" : "Enter your email",
+  "warning" : "Warning",
+  "phoneOrEmailAlready" :"Phone Number Or Email Already Exists"
 }

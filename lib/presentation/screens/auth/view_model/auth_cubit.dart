@@ -1,4 +1,7 @@
+import 'package:ecommerce_app/data/class/crud.dart';
+import 'package:ecommerce_app/domain/models/auth/signup_model.dart';
 import 'package:ecommerce_app/presentation/presentation_managers/routes_managers.dart';
+import 'package:ecommerce_app/utities/main_function.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 part 'auth_state.dart';
@@ -9,50 +12,65 @@ class AuthCubit extends Cubit<AuthState> {
   static AuthCubit get(context) => BlocProvider.of(context);
 
   bool isShowPassword = true;
-
-  showPassword(){
-    isShowPassword = isShowPassword == true ? false : true ;
+  showPassword() {
+    isShowPassword = isShowPassword == true ? false : true;
     emit(AuthShowPassword());
   }
 
-
   //Login
   GlobalKey<FormState> formKeyLogin = GlobalKey<FormState>();
-  TextEditingController phoneLogin = TextEditingController();
+  TextEditingController emailLogin = TextEditingController();
   TextEditingController passwordLogin = TextEditingController();
 
   void login(BuildContext context) {
     var formLogin = formKeyLogin.currentState;
-    if(formLogin!.validate()){
+    if (formLogin!.validate()) {
       clearLoginText();
-    }else{
+    } else {
       print("Not Vaild");
     }
   }
 
   void clearLoginText() {
-    phoneLogin.clear();
+    emailLogin.clear();
     passwordLogin.clear();
   }
 
   //SignUp
   GlobalKey<FormState> formKeySignUp = GlobalKey<FormState>();
   TextEditingController fullNameSignUp = TextEditingController();
+  TextEditingController emailSignUp = TextEditingController();
   TextEditingController phoneSignUp = TextEditingController();
   TextEditingController passwordSignUp = TextEditingController();
 
-  void signUp(BuildContext context) {
+  StatusRequest? statusRequest;
+
+  void signUp(BuildContext context) async {
     var formSignUp = formKeySignUp.currentState;
-    if(formSignUp!.validate()){
-      clearSignUpText();
-      Navigator.pushReplacementNamed(context, Routes.verifyCodeRegisterRoute);
-    }else{
-      print("Not Vaild");
+    if (formSignUp!.validate()) {
+      Crud crud = Crud();
+      SignUpModel signUpModel = SignUpModel(crud);
+      statusRequest = StatusRequest.loading;
+      var response = await signUpModel.postData(fullNameSignUp.text,
+          passwordSignUp.text, emailSignUp.text, phoneSignUp.text);
+      statusRequest = handlingData(response);
+      if (StatusRequest.success == statusRequest) {
+        if (response['status'] == "success") {
+          clearSignUpText();
+          Navigator.pushReplacementNamed(
+              context, Routes.verifyCodeRegisterRoute);
+        }
+       }else{
+        checkEmailAndPhone(context: context);
+        statusRequest = StatusRequest.failure;
+      }
+      emit(AuthCreateUserState());
     }
   }
 
   void clearSignUpText() {
     fullNameSignUp.clear();
+    emailSignUp.clear();
     passwordSignUp.clear();
     phoneSignUp.clear();
   }
@@ -63,13 +81,14 @@ class AuthCubit extends Cubit<AuthState> {
 
   void forgetPassword(BuildContext context) {
     var formForgetPassword = formKeyForgetPassword.currentState;
-    if(formForgetPassword!.validate()){
+    if (formForgetPassword!.validate()) {
       clearForgetPasswordText();
       Navigator.pushReplacementNamed(context, Routes.verifyCodeRoute);
-    }else{
+    } else {
       print("Not Vaild");
     }
   }
+
   void clearForgetPasswordText() {
     phoneForgetPassword.clear();
   }
@@ -85,10 +104,10 @@ class AuthCubit extends Cubit<AuthState> {
 
   void resetPassword(BuildContext context) {
     var formResetPassword = formKeyResetPassword.currentState;
-    if(formResetPassword!.validate()){
+    if (formResetPassword!.validate()) {
       clearResetPasswordText();
       Navigator.pushReplacementNamed(context, Routes.successResetRoute);
-    }else{
+    } else {
       print("Not Vaild");
     }
   }

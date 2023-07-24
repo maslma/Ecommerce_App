@@ -48,10 +48,10 @@ class VerifyCodeView extends StatelessWidget {
                     fieldWidth: 48.w,
                     cursorColor: ColorManager.primaryColor,
                     borderRadius: BorderRadius.circular(8.r),
-                    numberOfFields: 4,
+                    numberOfFields: 5,
                     enabledBorderColor: ColorManager.grey2,
                     focusedBorderColor: ColorManager.primaryColor,
-                    margin: EdgeInsets.symmetric(horizontal: 16.w),
+                    margin: EdgeInsets.symmetric(horizontal: 12.w),
                     textStyle: TextStyle(
                         color: ColorManager.black,
                         fontWeight: FontWeight.w600,

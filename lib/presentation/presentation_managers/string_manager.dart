@@ -17,6 +17,8 @@ class AppStrings {
   static const String pleaseEnter = "pleaseEnter";
   static const String fullName = "fullName";
   static const String enterFillName = "enterFillName";
+  static const String email = "email";
+  static const String enterEmail = "enterEmail";
   static const String phone = "phone";
   static const String enterPhone = "enterPhone";
   static const String password = "password";
@@ -60,5 +62,7 @@ class AppStrings {
   static const String doYouApplication = "doYouApplication";
   static const String confirm = "confirm";
   static const String cancel = "cancel";
+  static const String warning = "warning";
+  static const String phoneOrEmailAlready = "phoneOrEmailAlready";
 
 }

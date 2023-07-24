@@ -4,6 +4,8 @@ import 'package:ecommerce_app/presentation/presentation_managers/color_managers.
 import 'package:ecommerce_app/presentation/presentation_managers/string_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'dart:io';
+
 
 bool isValidUsername(String val) {
   const pattern = r'^[a-zA-Z0-9_]+$';
@@ -20,7 +22,7 @@ bool isValidPhone(String val) {
   const pattern = r'^\+?[0-9]{6,}$';
   return RegExp(pattern).hasMatch(val);
 }
-
+//validation textFormFiled
 validateInput(String val, int min, int max, String type, BuildContext context) {
   if (type == AppStrings.fullName) {
     if (!isValidUsername(val)) {
@@ -28,7 +30,7 @@ validateInput(String val, int min, int max, String type, BuildContext context) {
     }
   }
 
-  if (type == "email") {
+  if (type == AppStrings.email) {
     if (!isValidEmail(val)) {
       return AppStrings.notValidEmail.tr(context);
     }
@@ -52,7 +54,7 @@ validateInput(String val, int min, int max, String type, BuildContext context) {
     return "${AppStrings.cantBeLargerThan.tr(context)} $max";
   }
 }
-
+// Exit App
 Future<bool> alertExitApp(BuildContext context) async {
   bool? confirmed = await showDialog<bool>(
     context: context,
@@ -131,65 +133,60 @@ Future<bool> alertExitApp(BuildContext context) async {
   return confirmed ?? false; // Return false if confirmed is null
 }
 
-// navTo({
-//   required String routeName,
-//   required BuildContext context,
-// }) {
-//   Navigator.of(context).pushNamed(routeName);
-// }
-//
-// void showToast({
-//   required String text,
-//   required ToastState state,
-// }) {
-//   Fluttertoast.showToast(
-//       msg: text,
-//       toastLength: Toast.LENGTH_LONG,
-//       gravity: ToastGravity.BOTTOM,
-//       timeInSecForIosWeb: 5,
-//       backgroundColor: chooseToastColor(state),
-//       textColor: Colors.white,
-//       fontSize: 16.0);
-// }
-//
-// enum ToastState { SUCCESS, ERORR, WARNING }
-//
-// Color chooseToastColor(ToastState state) {
-//   Color color;
-//   switch (state) {
-//     case ToastState.SUCCESS:
-//       color = Colors.green;
-//       break;
-//     case ToastState.ERORR:
-//       color = Colors.red;
-//       break;
-//     case ToastState.WARNING:
-//       color = Colors.amber;
-//       break;
-//   }
-//   return color;
-// }
-//
-// Widget myDivider() =>Padding(
-//   padding: const EdgeInsetsDirectional.only(
-//     start:20.0,
-//     end: 20.0
-//   ),
-//   child: Container(
-//     width:double.infinity,
-//     height:1.0 ,
-//     color:Colors.grey[500] ,
-//   ),
-// );
-// void navigateAndFinish(context , widget ) => Navigator.pushAndRemoveUntil(
-//   context,
-//
-//   MaterialPageRoute(
-//     builder:(context) => widget,
-//   ),
-//       (route){
-//     return false;
-//   },
-// );
-//
+void checkEmailAndPhone({
+  context,
+}) async {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return  AlertDialog(
+        backgroundColor: ColorManager.white,
+        title:  Center(
+          child: Text(
+            AppStrings.warning.tr(context),
+            style: const TextStyle(
+              color: ColorManager.primaryColor,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        content:  Text(AppStrings.phoneOrEmailAlready.tr(context),
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+          ),),
+      );
+    },
+  );
+}
+
+//check internet
+checkInternet() async {
+  try {
+    var result = await InternetAddress.lookup("google.com");
+    if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+      return true;
+    }
+  }on SocketException catch (_) {
+    return false;
+  }
+}
+
+enum StatusRequest {
+  loading ,
+  success ,
+  failure ,
+  serverfailure ,
+  serverException ,
+  offlinefailure
+}
+
+handlingData(response) {
+  if (response is StatusRequest) {
+    return response;
+  } else {
+    return StatusRequest.success;
+  }
+}
+
+
 String? token = ChachHelper.getData(key: 'token');

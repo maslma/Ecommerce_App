@@ -6,3 +6,5 @@ abstract class AuthState{}
 class AuthInitial extends AuthState{}
 
 class AuthShowPassword extends AuthState{}
+
+class AuthCreateUserState extends AuthState{}
