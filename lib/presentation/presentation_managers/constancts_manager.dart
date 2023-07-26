@@ -5,6 +5,7 @@ class AppConst {
 
 // ================================= Auth ========================== //
   static const String signUp = "$server/auth/signup.php";
+  static const String verifyCode = "$server/auth/verfiycode.php";
 
 
 

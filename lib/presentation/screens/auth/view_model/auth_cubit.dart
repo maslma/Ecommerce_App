@@ -1,6 +1,8 @@
 import 'package:ecommerce_app/data/class/crud.dart';
 import 'package:ecommerce_app/domain/models/auth/signup_model.dart';
+import 'package:ecommerce_app/domain/models/auth/verify_code_signup.dart';
 import 'package:ecommerce_app/presentation/presentation_managers/routes_managers.dart';
+import 'package:ecommerce_app/presentation/presentation_managers/string_manager.dart';
 import 'package:ecommerce_app/utities/main_function.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +12,8 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
 
   static AuthCubit get(context) => BlocProvider.of(context);
+
+  StatusRequest? statusRequest;
 
   bool isShowPassword = true;
   showPassword() {
@@ -43,28 +47,28 @@ class AuthCubit extends Cubit<AuthState> {
   TextEditingController phoneSignUp = TextEditingController();
   TextEditingController passwordSignUp = TextEditingController();
 
-  StatusRequest? statusRequest;
-
   void signUp(BuildContext context) async {
     var formSignUp = formKeySignUp.currentState;
     if (formSignUp!.validate()) {
       Crud crud = Crud();
       SignUpModel signUpModel = SignUpModel(crud);
       statusRequest = StatusRequest.loading;
+      emit(AuthLoadingCreateUserState());
       var response = await signUpModel.postData(fullNameSignUp.text,
           passwordSignUp.text, emailSignUp.text, phoneSignUp.text);
       statusRequest = handlingData(response);
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
-          clearSignUpText();
           Navigator.pushReplacementNamed(
-              context, Routes.verifyCodeRegisterRoute);
+              context, Routes.verifyCodeRegisterRoute,
+              arguments: {"email": emailSignUp.text});
+          emit(AuthSuccessCreateUserState());
         }
-       }else{
-        checkEmailAndPhone(context: context);
+      } else {
+        checkEmailAndPhone(AppStrings.warning,AppStrings.phoneOrEmailAlready,context);
         statusRequest = StatusRequest.failure;
+        emit(AuthErrorCreateUserState());
       }
-      emit(AuthCreateUserState());
     }
   }
 
@@ -93,9 +97,28 @@ class AuthCubit extends Cubit<AuthState> {
     phoneForgetPassword.clear();
   }
 
-  //VerifyCode
+  //VerifyCodeSignup
 
-  String? verifyCode;
+  void goToSuccessSignUp(BuildContext context, String verificationCode) async {
+    Crud crud = Crud();
+    VerifyCodeSignUpModel verifyCodeSignUpModel = VerifyCodeSignUpModel(crud);
+    statusRequest = StatusRequest.loading;
+    emit(AuthLoadingVerifyCoState());
+    var response = await verifyCodeSignUpModel.postData(
+        emailSignUp.text, verificationCode);
+    statusRequest = handlingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        Navigator.pushReplacementNamed(context, Routes.successRegisterRoute);
+        clearSignUpText();
+        emit(AuthSuccessVerifyCoState());
+      } else {
+        checkEmailAndPhone(AppStrings.warning,AppStrings.verifyNotCorrect ,context);
+        statusRequest = StatusRequest.failure;
+        emit(AuthErrorVerifyCoState());
+      }
+    }
+  }
 
   //Reset Password
   GlobalKey<FormState> formKeyResetPassword = GlobalKey<FormState>();

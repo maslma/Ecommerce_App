@@ -64,5 +64,6 @@ class AppStrings {
   static const String cancel = "cancel";
   static const String warning = "warning";
   static const String phoneOrEmailAlready = "phoneOrEmailAlready";
+  static const String verifyNotCorrect = "VerifyNotCorrect";
 
 }

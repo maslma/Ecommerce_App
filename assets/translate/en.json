@@ -63,5 +63,6 @@
   "email" : "Email",
   "enterEmail" : "Enter your email",
   "warning" : "Warning",
-  "phoneOrEmailAlready" :"Phone Number Or Email Already Exists"
+  "phoneOrEmailAlready" :"Phone Number Or Email Already Exists",
+  "VerifyNotCorrect" : "Verify Code Not Correct"
 }

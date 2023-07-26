@@ -133,9 +133,11 @@ Future<bool> alertExitApp(BuildContext context) async {
   return confirmed ?? false; // Return false if confirmed is null
 }
 
-void checkEmailAndPhone({
+void checkEmailAndPhone(
+  String title,
+  String body,
   context,
-}) async {
+) async {
   showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -143,14 +145,14 @@ void checkEmailAndPhone({
         backgroundColor: ColorManager.white,
         title:  Center(
           child: Text(
-            AppStrings.warning.tr(context),
+            title.tr(context),
             style: const TextStyle(
               color: ColorManager.primaryColor,
               fontWeight: FontWeight.bold,
             ),
           ),
         ),
-        content:  Text(AppStrings.phoneOrEmailAlready.tr(context),
+        content:  Text(body.tr(context),
           style: const TextStyle(
             fontWeight: FontWeight.bold,
           ),),
