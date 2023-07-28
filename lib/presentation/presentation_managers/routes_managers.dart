@@ -6,6 +6,7 @@ import 'package:ecommerce_app/presentation/screens/auth/views/success_register.d
 import 'package:ecommerce_app/presentation/screens/auth/views/success_reset_password.dart';
 import 'package:ecommerce_app/presentation/screens/auth/views/verify_code.dart';
 import 'package:ecommerce_app/presentation/screens/auth/views/verify_code_register.dart';
+import 'package:ecommerce_app/presentation/screens/home/views/home_view.dart';
 import 'package:ecommerce_app/presentation/screens/language/views/language_screen.dart';
 import 'package:ecommerce_app/presentation/screens/onboarding/views/onboarding_screen.dart';
 import 'package:ecommerce_app/presentation/screens/splash/splash_view.dart';
@@ -16,6 +17,7 @@ class Routes {
   static const String splashRoute = '/';
   static const String onboardingRoute = '/onboardingRoute';
   static const String languageRoute = '/languageRoute';
+  //Auth
   static const String loginRoute = '/login';
   static const String registerRoute = '/register';
   static const String forgotPasswordRoute = '/forgetPassword';
@@ -24,6 +26,7 @@ class Routes {
   static const String verifyCodeRegisterRoute = '/verifyCodeRegister';
   static const String successResetRoute = '/successReset';
   static const String successRegisterRoute = '/successRegister';
+  //Home
   static const String homeRoute = '/home';
   static const String bottomNav = '/bottomNav';
   static const String mainRoute = '/main';
@@ -38,6 +41,7 @@ class RoutesGenerator {
         return MaterialPageRoute(builder: (_) => const SplashView());
       case Routes.onboardingRoute:
         return MaterialPageRoute(builder: (_) => const OnBoardingView());
+        //Auth
       case Routes.languageRoute:
         return MaterialPageRoute(builder: (_) => const LanguageView());
       case Routes.registerRoute:
@@ -56,6 +60,9 @@ class RoutesGenerator {
         return MaterialPageRoute(builder: (_) => const SuccessRegister());
         case Routes.verifyCodeRegisterRoute:
         return MaterialPageRoute(builder: (_) => const VerifyCodeRegister());
+        //Home
+        case Routes.homeRoute:
+        return MaterialPageRoute(builder: (_) => const HomeView());
 
       default:
         return unDefinedRoute();

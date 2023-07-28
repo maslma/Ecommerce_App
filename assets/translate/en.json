@@ -31,7 +31,7 @@
   "forgetPassword" : "Forget Password ?",
   "forgetPassword2" : "Forget Password",
   "skip" : "Skip",
-  "enterResetPassword" : "Enter your Phone Number\n to reset password.",
+  "enterResetPassword" : "Enter your email to\n reset password.",
   "resetPassword" : "Reset Password",
   "resetPassword2" : "Reset Password",
   "createPassword" : "Create strong and secured\nnew password.",
@@ -64,5 +64,9 @@
   "enterEmail" : "Enter your email",
   "warning" : "Warning",
   "phoneOrEmailAlready" :"Phone Number Or Email Already Exists",
-  "VerifyNotCorrect" : "Verify Code Not Correct"
+  "VerifyNotCorrect" : "Verify Code Not Correct",
+  "emailOrPasswordNotCorrect" : "Email Or Password Not Correct",
+  "emailNotFound" : "Email Not Found",
+  "passwordNotMatch" : "Password Not Match",
+  "tryAgain" : "Try Again"
 }

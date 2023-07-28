@@ -23,17 +23,19 @@ class _SplashViewState extends State<SplashView> {
   }
 
   _goNext() {
-    token = ChachHelper.getData(key: '1');
-    debugPrint(token);
-    token == 1 ? Navigator.pushReplacementNamed(context, Routes.languageRoute)
-        : Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
-            MaterialPageRoute(
-              builder: (context) {
-                return const LoginView();
-              },
-            ),
-            (route) => false,
-          );
+    // token = ChachHelper.getData(key: '1');
+    // debugPrint(token);
+    // token == 1 ?
+    Navigator.pushReplacementNamed(context, Routes.languageRoute);
+        // :
+    // Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
+    //         MaterialPageRoute(
+    //           builder: (context) {
+    //             return const LoginView();
+    //           },
+    //         ),
+    //         (route) => false,
+    //       );
   }
 
   @override

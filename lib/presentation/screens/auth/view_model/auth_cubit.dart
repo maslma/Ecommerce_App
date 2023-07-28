@@ -1,5 +1,9 @@
 import 'package:ecommerce_app/data/class/crud.dart';
+import 'package:ecommerce_app/domain/models/auth/check_email_model.dart';
+import 'package:ecommerce_app/domain/models/auth/login_model.dart';
+import 'package:ecommerce_app/domain/models/auth/reset_password_model.dart';
 import 'package:ecommerce_app/domain/models/auth/signup_model.dart';
+import 'package:ecommerce_app/domain/models/auth/verfiycode_password_model.dart';
 import 'package:ecommerce_app/domain/models/auth/verify_code_signup.dart';
 import 'package:ecommerce_app/presentation/presentation_managers/routes_managers.dart';
 import 'package:ecommerce_app/presentation/presentation_managers/string_manager.dart';
@@ -26,12 +30,28 @@ class AuthCubit extends Cubit<AuthState> {
   TextEditingController emailLogin = TextEditingController();
   TextEditingController passwordLogin = TextEditingController();
 
-  void login(BuildContext context) {
+  void login(BuildContext context) async {
     var formLogin = formKeyLogin.currentState;
     if (formLogin!.validate()) {
-      clearLoginText();
-    } else {
-      print("Not Vaild");
+      Crud crud = Crud();
+      LoginModel loginModel = LoginModel(crud);
+      statusRequest = StatusRequest.loading;
+      emit(AuthLoadingLoginState());
+      var response =
+          await loginModel.postData(emailLogin.text, passwordLogin.text);
+      statusRequest = handlingData(response);
+      if (StatusRequest.success == statusRequest) {
+        if (response['status'] == "success") {
+          Navigator.pushReplacementNamed(context, Routes.homeRoute);
+          clearLoginText();
+          emit(AuthSuccessLoginState());
+        } else {
+          checkEmailAndPhone(AppStrings.warning,
+              AppStrings.emailOrPasswordNotCorrect, context);
+          statusRequest = StatusRequest.failure;
+          emit(AuthErrorLoginState());
+        }
+      }
     }
   }
 
@@ -65,7 +85,8 @@ class AuthCubit extends Cubit<AuthState> {
           emit(AuthSuccessCreateUserState());
         }
       } else {
-        checkEmailAndPhone(AppStrings.warning,AppStrings.phoneOrEmailAlready,context);
+        checkEmailAndPhone(
+            AppStrings.warning, AppStrings.phoneOrEmailAlready, context);
         statusRequest = StatusRequest.failure;
         emit(AuthErrorCreateUserState());
       }
@@ -81,20 +102,34 @@ class AuthCubit extends Cubit<AuthState> {
 
   //ForgetPassword
   GlobalKey<FormState> formKeyForgetPassword = GlobalKey<FormState>();
-  TextEditingController phoneForgetPassword = TextEditingController();
+  TextEditingController emailForgetPassword = TextEditingController();
 
-  void forgetPassword(BuildContext context) {
+  void forgetPassword(BuildContext context) async {
     var formForgetPassword = formKeyForgetPassword.currentState;
     if (formForgetPassword!.validate()) {
-      clearForgetPasswordText();
-      Navigator.pushReplacementNamed(context, Routes.verifyCodeRoute);
-    } else {
-      print("Not Vaild");
+      Crud crud = Crud();
+      CheckEmailModel checkEmailModel = CheckEmailModel(crud);
+      statusRequest = StatusRequest.loading;
+      emit(AuthLoadingCheckEmailState());
+      var response = await checkEmailModel.postData(emailForgetPassword.text);
+      statusRequest = handlingData(response);
+      if (StatusRequest.success == statusRequest) {
+        if (response['status'] == "success") {
+          Navigator.pushReplacementNamed(context, Routes.verifyCodeRoute,
+              arguments: {"email": emailForgetPassword.text});
+          emit(AuthSuccessCheckEmailState());
+        } else {
+          checkEmailAndPhone(
+              AppStrings.warning, AppStrings.emailNotFound, context);
+          statusRequest = StatusRequest.failure;
+          emit(AuthErrorCheckEmailState());
+        }
+      }
     }
   }
 
   void clearForgetPasswordText() {
-    phoneForgetPassword.clear();
+    emailForgetPassword.clear();
   }
 
   //VerifyCodeSignup
@@ -113,9 +148,36 @@ class AuthCubit extends Cubit<AuthState> {
         clearSignUpText();
         emit(AuthSuccessVerifyCoState());
       } else {
-        checkEmailAndPhone(AppStrings.warning,AppStrings.verifyNotCorrect ,context);
+        checkEmailAndPhone(
+            AppStrings.warning, AppStrings.verifyNotCorrect, context);
         statusRequest = StatusRequest.failure;
         emit(AuthErrorVerifyCoState());
+      }
+    }
+  }
+
+  //VerifyCodeForgetPassword
+
+  void goToSuccessVerifyCodeForgetPassword(
+      BuildContext context, String verificationCode) async {
+    Crud crud = Crud();
+    VerifyCodePasswordModel verifyCodePasswordModel =
+        VerifyCodePasswordModel(crud);
+    statusRequest = StatusRequest.loading;
+    emit(AuthLoadingVerifyCodeForgetPasswordState());
+    var response = await verifyCodePasswordModel.postData(
+        emailForgetPassword.text, verificationCode);
+    statusRequest = handlingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+        Navigator.pushReplacementNamed(context, Routes.resetPasswordRoute,
+            arguments: {"email": emailForgetPassword.text});
+        emit(AuthSuccessVerifyCodeForgetPasswordState());
+      } else {
+        checkEmailAndPhone(
+            AppStrings.warning, AppStrings.verifyNotCorrect, context);
+        statusRequest = StatusRequest.failure;
+        emit(AuthErrorVerifyCodeForgetPasswordState());
       }
     }
   }
@@ -125,13 +187,33 @@ class AuthCubit extends Cubit<AuthState> {
   TextEditingController passwordResetPassword = TextEditingController();
   TextEditingController confirmPasswordResetPassword = TextEditingController();
 
-  void resetPassword(BuildContext context) {
+  void resetPassword(BuildContext context) async {
+    if (passwordResetPassword.text != confirmPasswordResetPassword.text) {
+      return  checkEmailAndPhone(
+          AppStrings.warning, AppStrings.passwordNotMatch, context);
+    }
     var formResetPassword = formKeyResetPassword.currentState;
     if (formResetPassword!.validate()) {
-      clearResetPasswordText();
-      Navigator.pushReplacementNamed(context, Routes.successResetRoute);
-    } else {
-      print("Not Vaild");
+      Crud crud = Crud();
+      ResetPasswordModel resetPasswordModel = ResetPasswordModel(crud);
+      statusRequest = StatusRequest.loading;
+      emit(AuthLoadingResetPasswordState());
+      var response = await resetPasswordModel.postData(
+          emailForgetPassword.text, passwordResetPassword.text);
+      statusRequest = handlingData(response);
+      if (StatusRequest.success == statusRequest) {
+        if (response['status'] == "success") {
+          Navigator.pushReplacementNamed(context, Routes.successResetRoute);
+          clearResetPasswordText();
+          clearForgetPasswordText();
+          emit(AuthSuccessResetPasswordState());
+        } else {
+          checkEmailAndPhone(
+              AppStrings.warning, AppStrings.tryAgain, context);
+          statusRequest = StatusRequest.failure;
+          emit(AuthErrorResetPasswordState());
+        }
+      }
     }
   }
 

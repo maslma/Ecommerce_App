@@ -152,10 +152,16 @@ void checkEmailAndPhone(
             ),
           ),
         ),
-        content:  Text(body.tr(context),
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-          ),),
+        content:  Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(body.tr(context),
+              style:  TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 14.sp
+              ),),
+          ],
+        ),
       );
     },
   );

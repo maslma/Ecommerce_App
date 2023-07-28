@@ -31,7 +31,7 @@
   "forgetPassword" : "نسيت رقم المرور ؟",
   "forgetPassword2" : "نسيت رقم المرور",
   "skip" : "تخطي",
-  "enterResetPassword" :"برجاء ادخال رقم الهاتف \nلتاكيد حسابك",
+  "enterResetPassword" :"الرجاء ادخال البريد الالكتروني \nلتاكيد حسابك",
   "resetPassword" : "ارسال",
   "resetPassword2" : "اعادة كلمة المرور",
   "createPassword" : "برجاء ادخال كلمة مرور \nلتاكيد حسابك",
@@ -64,7 +64,11 @@
   "enterEmail" : "أدخل البريد الالكتروني",
   "warning" : "خطأ",
   "phoneOrEmailAlready" : "رقم الهاتف أو البريد الإلكتروني موجود بالفعل",
-  "VerifyNotCorrect" : "رمز التحقق غير صحيح"
+  "VerifyNotCorrect" : "رمز التحقق غير صحيح",
+  "emailOrPasswordNotCorrect" : "البريد الإلكتروني أو كلمة المرور غير صحيح",
+  "emailNotFound" : "البريد الإلكتروني غير موجود",
+  "passwordNotMatch" : "كلمة السر ليست متطابقة",
+  "tryAgain" : "حاول مرة اخرى"
 
 
 }

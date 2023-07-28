@@ -65,5 +65,9 @@ class AppStrings {
   static const String warning = "warning";
   static const String phoneOrEmailAlready = "phoneOrEmailAlready";
   static const String verifyNotCorrect = "VerifyNotCorrect";
+  static const String emailOrPasswordNotCorrect = "emailOrPasswordNotCorrect";
+  static const String emailNotFound = "emailNotFound";
+  static const String passwordNotMatch = "passwordNotMatch";
+  static const String tryAgain = "tryAgain";
 
 }
