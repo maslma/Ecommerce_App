@@ -38,7 +38,7 @@ class AuthCubit extends Cubit<AuthState> {
       statusRequest = StatusRequest.loading;
       emit(AuthLoadingLoginState());
       var response =
-          await loginModel.postData(emailLogin.text, passwordLogin.text);
+      await loginModel.postData(emailLogin.text, passwordLogin.text);
       statusRequest = handlingData(response);
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
@@ -162,7 +162,7 @@ class AuthCubit extends Cubit<AuthState> {
       BuildContext context, String verificationCode) async {
     Crud crud = Crud();
     VerifyCodePasswordModel verifyCodePasswordModel =
-        VerifyCodePasswordModel(crud);
+    VerifyCodePasswordModel(crud);
     statusRequest = StatusRequest.loading;
     emit(AuthLoadingVerifyCodeForgetPasswordState());
     var response = await verifyCodePasswordModel.postData(

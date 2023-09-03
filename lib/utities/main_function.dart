@@ -180,6 +180,7 @@ checkInternet() async {
 }
 
 enum StatusRequest {
+  none,
   loading ,
   success ,
   failure ,

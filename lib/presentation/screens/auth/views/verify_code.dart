@@ -22,84 +22,82 @@ class VerifyCodeView extends StatelessWidget {
       builder: (context, state) {
         AuthCubit cubit = AuthCubit.get(context);
         return Scaffold(
-            body: BlocBuilder<AuthCubit, AuthState>(
-          builder: (context, state) =>
-              cubit.statusRequest == StatusRequest.loading
-                  ? Center(
-                      child: Lottie.asset(ImageAssets.loading,
-                          width: 250.w, height: 250.h))
-                  : Container(
-                      padding: EdgeInsets.symmetric(horizontal: 20.w),
-                      child: ListView(
-                        children: [
-                          SizedBox(
-                            height: 65.h,
-                          ),
-                          CustomTitleAuth(
-                            title: AppStrings.Otp.tr(context),
-                          ),
-                          SizedBox(
-                            height: 14.h,
-                          ),
-                          CustomBodyAuth(
-                            body: AppStrings.authenticationCode.tr(context),
-                          ),
-                          CustomBodyAuth(
-                            body: cubit.emailForgetPassword.text,
-                            color: ColorManager.primaryColor,
-                          ),
-                          SizedBox(
-                            height: 28.h,
-                          ),
-                          Directionality(
-                            textDirection: TextDirection.ltr,
-                            child: OtpTextField(
-                              fieldWidth: 48.w,
-                              cursorColor: ColorManager.primaryColor,
-                              borderRadius: BorderRadius.circular(8.r),
-                              numberOfFields: 5,
-                              enabledBorderColor: ColorManager.grey2,
-                              focusedBorderColor: ColorManager.primaryColor,
-                              margin: EdgeInsets.symmetric(horizontal: 12.w),
-                              textStyle: TextStyle(
-                                  color: ColorManager.black,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 24.sp),
-                              showFieldAsBox: true,
-                              onCodeChanged: (String code) {},
-                              onSubmit: (String verificationCode) {
-                                cubit.goToSuccessVerifyCodeForgetPassword(
-                                    context, verificationCode);
-                              },
-                            ),
-                          ),
-                          // SizedBox(
-                          //   height: 48.h,
-                          // ),
-                          // GlobalButton(
-                          //   height: 60.h,
-                          //   width: 388.w,
-                          //   radius: 8.r,
-                          //   text: AppStrings.submit.tr(context),
-                          //   colorText: Colors.white,
-                          //   onPressed: () {
-                          //     Navigator.pushReplacementNamed(context, Routes.resetPasswordRoute);
-                          //   },
-                          // ),
-                          // SizedBox(
-                          //   height: 32.h,
-                          // ),
-                          // CustomBodyAuth(
-                          //   body: AppStrings.codeSent.tr(context),
-                          // ),
-                          // CustomBodyAuth(
-                          //   body: AppStrings.second.tr(context),
-                          //   color: ColorManager.primaryColor,
-                          // ),
-                        ],
+          body: cubit.statusRequest == StatusRequest.loading
+              ? Center(
+                  child: Lottie.asset(ImageAssets.loading,
+                      width: 250.w, height: 250.h))
+              : Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20.w),
+                  child: ListView(
+                    children: [
+                      SizedBox(
+                        height: 65.h,
                       ),
-                    ),
-        ));
+                      CustomTitleAuth(
+                        title: AppStrings.Otp.tr(context),
+                      ),
+                      SizedBox(
+                        height: 14.h,
+                      ),
+                      CustomBodyAuth(
+                        body: AppStrings.authenticationCode.tr(context),
+                      ),
+                      CustomBodyAuth(
+                        body: cubit.emailForgetPassword.text,
+                        color: ColorManager.primaryColor,
+                      ),
+                      SizedBox(
+                        height: 28.h,
+                      ),
+                      Directionality(
+                        textDirection: TextDirection.ltr,
+                        child: OtpTextField(
+                          fieldWidth: 48.w,
+                          cursorColor: ColorManager.primaryColor,
+                          borderRadius: BorderRadius.circular(8.r),
+                          numberOfFields: 5,
+                          enabledBorderColor: ColorManager.grey2,
+                          focusedBorderColor: ColorManager.primaryColor,
+                          margin: EdgeInsets.symmetric(horizontal: 12.w),
+                          textStyle: TextStyle(
+                              color: ColorManager.black,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 24.sp),
+                          showFieldAsBox: true,
+                          onCodeChanged: (String code) {},
+                          onSubmit: (String verificationCode) {
+                            cubit.goToSuccessVerifyCodeForgetPassword(
+                                context, verificationCode);
+                          },
+                        ),
+                      ),
+                      // SizedBox(
+                      //   height: 48.h,
+                      // ),
+                      // GlobalButton(
+                      //   height: 60.h,
+                      //   width: 388.w,
+                      //   radius: 8.r,
+                      //   text: AppStrings.submit.tr(context),
+                      //   colorText: Colors.white,
+                      //   onPressed: () {
+                      //     Navigator.pushReplacementNamed(context, Routes.resetPasswordRoute);
+                      //   },
+                      // ),
+                      // SizedBox(
+                      //   height: 32.h,
+                      // ),
+                      // CustomBodyAuth(
+                      //   body: AppStrings.codeSent.tr(context),
+                      // ),
+                      // CustomBodyAuth(
+                      //   body: AppStrings.second.tr(context),
+                      //   color: ColorManager.primaryColor,
+                      // ),
+                    ],
+                  ),
+                ),
+        );
       },
     );
   }

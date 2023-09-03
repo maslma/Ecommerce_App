@@ -24,3 +24,22 @@ class HandlingDataView extends StatelessWidget {
         : widget;
   }
 }
+
+class HandlingDataRequset extends StatelessWidget {
+  final StatusRequest statusRequest;
+  final Widget widget;
+  const HandlingDataRequset(
+      {Key? key, required this.statusRequest, required this.widget})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return statusRequest == StatusRequest.loading
+        ?   Center(child: Lottie.asset(ImageAssets.loading , width: 250.w , height: 250.h))
+        : statusRequest == StatusRequest.offlinefailure
+        ? Center(child: Lottie.asset(ImageAssets.offline , width: 250.w , height: 250.h))
+        : statusRequest == StatusRequest.serverfailure
+        ? Center(child: Lottie.asset(ImageAssets.server , width: 250.w , height: 250.h))
+        :  widget;
+  }
+}

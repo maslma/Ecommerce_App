@@ -29,7 +29,8 @@ class CustomDotControllerOnBoarding  extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: ColorManager.primaryColor,
                       borderRadius: BorderRadius.circular(10.r)),
-                ))
+                )
+                )
           ],
         );
       },

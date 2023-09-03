@@ -22,11 +22,10 @@ class VerifyCodeRegister extends StatelessWidget {
       builder: (context, state) {
         AuthCubit cubit = AuthCubit.get(context);
         return Scaffold(
-          body:  BlocBuilder<AuthCubit, AuthState>(
-            builder: (context, state) => cubit.statusRequest ==
-            StatusRequest.loading
-            ? Center(child: Lottie.asset(ImageAssets.loading , width: 250.w , height: 250.h))
-            :Container(
+          body:  cubit.statusRequest ==
+              StatusRequest.loading
+              ? Center(child: Lottie.asset(ImageAssets.loading , width: 250.w , height: 250.h))
+              :Container(
             padding: EdgeInsets.symmetric(horizontal: 20.w),
             child: ListView(
               children: [
@@ -80,7 +79,6 @@ class VerifyCodeRegister extends StatelessWidget {
               ],
             ),
           ),
-        )
         );
       },
     );

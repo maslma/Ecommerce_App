@@ -23,105 +23,104 @@ class ResetPasswordView extends StatelessWidget {
       builder: (context, state) {
         AuthCubit cubit = AuthCubit.get(context);
         return Scaffold(
-            body: BlocBuilder<AuthCubit, AuthState>(
-          builder: (context, state) => cubit.statusRequest ==
-                  StatusRequest.loading
-              ? Center(
-                  child: Lottie.asset(ImageAssets.loading,
-                      width: 250.w, height: 250.h))
-              : Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20.w),
-                  child: Form(
-                    key: cubit.formKeyResetPassword,
-                    child: ListView(
+            body:  cubit.statusRequest ==
+                StatusRequest.loading
+                ? Center(
+                child: Lottie.asset(ImageAssets.loading,
+                    width: 250.w, height: 250.h))
+                : Container(
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              child: Form(
+                key: cubit.formKeyResetPassword,
+                child: ListView(
+                  children: [
+                    SizedBox(
+                      height: 65.h,
+                    ),
+                    CustomTitleAuth(
+                      title: AppStrings.resetPassword2.tr(context),
+                    ),
+                    SizedBox(
+                      height: 14.h,
+                    ),
+                    CustomBodyAuth(
+                      body: AppStrings.createPassword.tr(context),
+                    ),
+                    SizedBox(
+                      height: 18.h,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
-                          height: 65.h,
-                        ),
-                        CustomTitleAuth(
-                          title: AppStrings.resetPassword2.tr(context),
+                        CustomTitleTextField(
+                          titleTextField: AppStrings.password.tr(context),
                         ),
                         SizedBox(
-                          height: 14.h,
+                          height: 8.h,
                         ),
-                        CustomBodyAuth(
-                          body: AppStrings.createPassword.tr(context),
+                        GlobalTextFormField(
+                          valid: (val) {
+                            return validateInput(val!, 5, 30,
+                                AppStrings.password.tr(context), context);
+                          },
+                          onTapIcon: () {
+                            cubit.showPassword();
+                          },
+                          obscureText: cubit.isShowPassword,
+                          controller: cubit.passwordResetPassword,
+                          hintText: AppStrings.enterPassword.tr(context),
+                          keyboardType: TextInputType.visiblePassword,
+                          suffixIcon: cubit.isShowPassword == true
+                              ? Icons.visibility_outlined
+                              : Icons.visibility_off_outlined,
                         ),
                         SizedBox(
                           height: 18.h,
                         ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            CustomTitleTextField(
-                              titleTextField: AppStrings.password.tr(context),
-                            ),
-                            SizedBox(
-                              height: 8.h,
-                            ),
-                            GlobalTextFormField(
-                              valid: (val) {
-                                return validateInput(val!, 5, 30,
-                                    AppStrings.password.tr(context), context);
-                              },
-                              onTapIcon: () {
-                                cubit.showPassword();
-                              },
-                              obscureText: cubit.isShowPassword,
-                              controller: cubit.passwordResetPassword,
-                              hintText: AppStrings.enterPassword.tr(context),
-                              keyboardType: TextInputType.visiblePassword,
-                              suffixIcon: cubit.isShowPassword == true
-                                  ? Icons.visibility_outlined
-                                  : Icons.visibility_off_outlined,
-                            ),
-                            SizedBox(
-                              height: 18.h,
-                            ),
-                            CustomTitleTextField(
-                              titleTextField:
-                                  AppStrings.confirmPassword.tr(context),
-                            ),
-                            SizedBox(
-                              height: 8.h,
-                            ),
-                            GlobalTextFormField(
-                              valid: (val) {
-                                return validateInput(val!, 5, 30,
-                                    AppStrings.password.tr(context), context);
-                              },
-                              onTapIcon: () {
-                                cubit.showPassword();
-                              },
-                              obscureText: cubit.isShowPassword,
-                              controller: cubit.confirmPasswordResetPassword,
-                              hintText:
-                                  AppStrings.enterConfirmPassword.tr(context),
-                              keyboardType: TextInputType.visiblePassword,
-                              suffixIcon: cubit.isShowPassword == true
-                                  ? Icons.visibility_outlined
-                                  : Icons.visibility_off_outlined,
-                            ),
-                          ],
+                        CustomTitleTextField(
+                          titleTextField:
+                          AppStrings.confirmPassword.tr(context),
                         ),
                         SizedBox(
-                          height: 48.h,
+                          height: 8.h,
                         ),
-                        GlobalButton(
-                          height: 60.h,
-                          width: 388.w,
-                          radius: 8.r,
-                          text: AppStrings.savePassword.tr(context),
-                          colorText: Colors.white,
-                          onPressed: () {
-                            cubit.resetPassword(context);
+                        GlobalTextFormField(
+                          valid: (val) {
+                            return validateInput(val!, 5, 30,
+                                AppStrings.password.tr(context), context);
                           },
+                          onTapIcon: () {
+                            cubit.showPassword();
+                          },
+                          obscureText: cubit.isShowPassword,
+                          controller: cubit.confirmPasswordResetPassword,
+                          hintText:
+                          AppStrings.enterConfirmPassword.tr(context),
+                          keyboardType: TextInputType.visiblePassword,
+                          suffixIcon: cubit.isShowPassword == true
+                              ? Icons.visibility_outlined
+                              : Icons.visibility_off_outlined,
                         ),
                       ],
                     ),
-                  ),
+                    SizedBox(
+                      height: 48.h,
+                    ),
+                    GlobalButton(
+                      height: 60.h,
+                      width: 388.w,
+                      radius: 8.r,
+                      text: AppStrings.savePassword.tr(context),
+                      colorText: Colors.white,
+                      onPressed: () {
+                        cubit.resetPassword(context);
+                      },
+                    ),
+                  ],
                 ),
-        ));
+              ),
+            ),
+        );
       },
     );
   }

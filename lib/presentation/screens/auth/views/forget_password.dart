@@ -23,72 +23,70 @@ class ForgetPasswordView extends StatelessWidget {
       builder: (context, state) {
         AuthCubit cubit = AuthCubit.get(context);
         return Scaffold(
-            body: BlocBuilder<AuthCubit, AuthState>(
-          builder: (context, state) =>
-              cubit.statusRequest == StatusRequest.loading
-                  ? Center(
-                      child: Lottie.asset(ImageAssets.loading,
-                          width: 250.w, height: 250.h))
-                  : Container(
-                      padding: EdgeInsets.symmetric(horizontal: 20.w),
-                      child: Form(
-                        key: cubit.formKeyForgetPassword,
-                        child: ListView(
+          body: cubit.statusRequest == StatusRequest.loading
+              ? Center(
+                  child: Lottie.asset(ImageAssets.loading,
+                      width: 250.w, height: 250.h))
+              : Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20.w),
+                  child: Form(
+                    key: cubit.formKeyForgetPassword,
+                    child: ListView(
+                      children: [
+                        SizedBox(
+                          height: 65.h,
+                        ),
+                        CustomTitleAuth(
+                          title: AppStrings.forgetPassword2.tr(context),
+                        ),
+                        SizedBox(
+                          height: 14.h,
+                        ),
+                        CustomBodyAuth(
+                          body: AppStrings.enterResetPassword.tr(context),
+                        ),
+                        SizedBox(
+                          height: 18.h,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(
-                              height: 65.h,
-                            ),
-                            CustomTitleAuth(
-                              title: AppStrings.forgetPassword2.tr(context),
+                            CustomTitleTextField(
+                              titleTextField: AppStrings.email.tr(context),
                             ),
                             SizedBox(
-                              height: 14.h,
+                              height: 8.h,
                             ),
-                            CustomBodyAuth(
-                              body: AppStrings.enterResetPassword.tr(context),
-                            ),
-                            SizedBox(
-                              height: 18.h,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                CustomTitleTextField(
-                                  titleTextField: AppStrings.email.tr(context),
-                                ),
-                                SizedBox(
-                                  height: 8.h,
-                                ),
-                                GlobalTextFormField(
-                                  valid: (val) {
-                                    return validateInput(val!, 3, 40,
-                                        AppStrings.email.tr(context), context);
-                                  },
-                                  controller: cubit.emailForgetPassword,
-                                  hintText: AppStrings.enterEmail.tr(context),
-                                  keyboardType: TextInputType.emailAddress,
-                                  suffixIcon: Icons.email_outlined,
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 48.h,
-                            ),
-                            GlobalButton(
-                              height: 60.h,
-                              width: 388.w,
-                              radius: 8.r,
-                              text: AppStrings.resetPassword.tr(context),
-                              colorText: Colors.white,
-                              onPressed: () {
-                                cubit.forgetPassword(context);
+                            GlobalTextFormField(
+                              valid: (val) {
+                                return validateInput(val!, 3, 40,
+                                    AppStrings.email.tr(context), context);
                               },
+                              controller: cubit.emailForgetPassword,
+                              hintText: AppStrings.enterEmail.tr(context),
+                              keyboardType: TextInputType.emailAddress,
+                              suffixIcon: Icons.email_outlined,
                             ),
                           ],
                         ),
-                      ),
+                        SizedBox(
+                          height: 48.h,
+                        ),
+                        GlobalButton(
+                          height: 60.h,
+                          width: 388.w,
+                          radius: 8.r,
+                          text: AppStrings.resetPassword.tr(context),
+                          colorText: Colors.white,
+                          onPressed: () {
+                            cubit.forgetPassword(context);
+                          },
+                        ),
+                      ],
                     ),
-        ));
+                  ),
+                ),
+        );
       },
     );
   }
