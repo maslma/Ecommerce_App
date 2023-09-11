@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/data/local/chach_helper.dart';
 import 'package:ecommerce_app/domain/data_source/static/onboarding_static.dart';
 import 'package:ecommerce_app/presentation/presentation_managers/routes_managers.dart';
 import 'package:ecommerce_app/presentation/screens/onboarding/view_model/onboarding_state.dart';
@@ -16,6 +17,7 @@ class OnBoardingCubit extends Cubit<OnBoardingStates> {
   void next(context) {
     currentPage++;
     if (currentPage > onBoardingList.length - 1) {
+      ChachHelper.sharedPreferences.setString("step", "1");
       Navigator.pushReplacementNamed(context, Routes.loginRoute);
     } else {
       pageController.animateToPage(currentPage,

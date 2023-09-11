@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/data/class/crud.dart';
+import 'package:ecommerce_app/data/local/chach_helper.dart';
 import 'package:ecommerce_app/domain/models/auth/check_email_model.dart';
 import 'package:ecommerce_app/domain/models/auth/login_model.dart';
 import 'package:ecommerce_app/domain/models/auth/reset_password_model.dart';
@@ -8,6 +9,7 @@ import 'package:ecommerce_app/domain/models/auth/verify_code_signup.dart';
 import 'package:ecommerce_app/presentation/presentation_managers/routes_managers.dart';
 import 'package:ecommerce_app/presentation/presentation_managers/string_manager.dart';
 import 'package:ecommerce_app/utities/main_function.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 part 'auth_state.dart';
@@ -42,6 +44,11 @@ class AuthCubit extends Cubit<AuthState> {
       statusRequest = handlingData(response);
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
+          ChachHelper.sharedPreferences.setString("id", response['data']['users_id']);
+          ChachHelper.sharedPreferences.setString("username", response['data']['users_name']);
+          ChachHelper.sharedPreferences.setString("email", response['data']['users_email']);
+          ChachHelper.sharedPreferences.setString("phone", response['data']['users_phone']);
+          ChachHelper.sharedPreferences.setString("step", "2");
           Navigator.pushReplacementNamed(context, Routes.homeRoute);
           clearLoginText();
           emit(AuthSuccessLoginState());
