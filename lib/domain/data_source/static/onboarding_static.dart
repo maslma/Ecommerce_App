@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/domain/models/onboarding_model.dart';
+import 'package:ecommerce_app/domain/models/onboarding/onboarding_model.dart';
 import 'package:ecommerce_app/presentation/presentation_managers/assets_managers.dart';
 import 'package:ecommerce_app/presentation/presentation_managers/string_manager.dart';
 

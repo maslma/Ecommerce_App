@@ -13,6 +13,9 @@ class AppConst {
   static const String resetPassword = "$server/forgetpassword/resetpassword.php";
   static const String verifyCodePassword = "$server/forgetpassword/verifycodepassword.php";
 
+// ================================= home ========================== //
+  static const String homePage = "$server/home.php";
+
 
 
 }
