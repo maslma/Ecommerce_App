@@ -15,7 +15,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ecommerce_app/presentation/presentation_managers/routes_managers.dart';
 import 'firebase_options.dart';
 
-//Eng_MaslmaAlZebda
+// Eng_MaslmaAl Zebda
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
