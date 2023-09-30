@@ -2,7 +2,9 @@ import 'dart:async';
 import 'package:ecommerce_app/data/local/chach_helper.dart';
 import 'package:ecommerce_app/presentation/presentation_managers/assets_managers.dart';
 import 'package:ecommerce_app/presentation/presentation_managers/color_managers.dart';
+import 'package:ecommerce_app/presentation/presentation_managers/constancts_manager.dart';
 import 'package:ecommerce_app/presentation/presentation_managers/routes_managers.dart';
+import 'package:ecommerce_app/presentation/screens/home/view_model/home_cubit.dart';
 import 'package:ecommerce_app/presentation/screens/home/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,14 +20,15 @@ class _SplashViewState extends State<SplashView> {
   Timer? _timer;
 
   _statrtDelay() {
-    _timer = Timer(const Duration(seconds: 3), _goNext);
+    _timer = Timer(const Duration(seconds: AppConst.splashDelay), _goNext);
   }
 
   _goNext() {
-    if (ChachHelper.sharedPreferences.get("step") == "1") {
+    if (ChachHelper.sharedPreferences.get("step") == null) {
       Navigator.pushReplacementNamed(context, Routes.languageRoute);
     }
     if (ChachHelper.sharedPreferences.get("step") == "2") {
+      HomeCubit.get(context).getData();
       Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
         MaterialPageRoute(
           builder: (context) {
@@ -35,7 +38,6 @@ class _SplashViewState extends State<SplashView> {
         (route) => false,
       );
     }
-    return null;
   }
 
   @override

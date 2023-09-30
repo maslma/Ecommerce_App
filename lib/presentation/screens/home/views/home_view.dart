@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/data/class/handling_data_view.dart';
 import 'package:ecommerce_app/presentation/presentation_managers/color_managers.dart';
 import 'package:ecommerce_app/presentation/screens/home/view_model/home_cubit.dart';
 import 'package:ecommerce_app/presentation/screens/home/view_model/home_state.dart';
@@ -16,7 +17,9 @@ class HomeView extends StatelessWidget {
           HomeCubit cubit = HomeCubit.get(context);
           return Scaffold(
               body: SafeArea(
-            child: Container(
+                  child: HandlingDataView(
+            statusRequest: cubit.statusRequest!,
+            widget: Container(
               padding: EdgeInsets.symmetric(horizontal: 15.w),
               child: ListView(children: [
                 Container(
@@ -83,9 +86,16 @@ class HomeView extends StatelessWidget {
                     )
                   ]),
                 ),
+                // Container(
+                //   child: ListView.builder(
+                //     itemBuilder: (context, index) {
+                //
+                //     },
+                //   ),
+                // )
               ]),
             ),
-          ));
+          )));
         });
   }
 }

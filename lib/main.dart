@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
                   create: (context) => LanguageCubit()..getSavedLanguage()),
               BlocProvider(create: (context) => OnBoardingCubit()),
               BlocProvider(create: (context) => AuthCubit()),
-              BlocProvider(create: (context) => HomeCubit()),
+              BlocProvider(create: (context) => HomeCubit()..getData()),
               BlocProvider(create: (context) => TestCubit()..getData()),
             ],
             child: BlocBuilder<LanguageCubit, LanguageState>(
